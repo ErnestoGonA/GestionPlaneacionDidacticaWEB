@@ -54,6 +54,12 @@ namespace GestionPlaneacionDidacticaWEB
 
             app.UseMvc(routes =>
             {
+
+                routes.MapAreaRoute(
+                    name: "Planeacion",
+                    areaName: "Planeacion",
+                    template: "Planeacion/{controller}/{action}/{id ?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

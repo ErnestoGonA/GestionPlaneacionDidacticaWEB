@@ -6,6 +6,42 @@ using System.Threading.Tasks;
 
 namespace GestionPlaneacionDidacticaWEB.Models
 {
+    
+    public class eva_cat_asignaturas
+    {
+        public Int16 IdAsignatura { get; set; }
+
+        [StringLength(50)]
+        public string ClaveAsignatura { get; set; }
+        [StringLength(150)]
+        public string DesAsignatura { get; set; }
+        [StringLength(10)]
+        public string Matricula { get; set; }
+        [StringLength(1)]
+        public string Actual { get; set; }
+        public DateTime FechaPlanEstudios { get; set; }
+        [StringLength(100)]
+        public string NombreCorto { get; set; }
+        [StringLength(18)]
+        public string Creditos { get; set; }
+
+        public Int16 IdTipoGenAsignatura { get; set; }
+        public Int16 IdGenAsignatura { get; set; }
+        public Int16 IdTipoGenNivelEscolar { get; set; }
+        public Int16 IdGenNivelEscolar { get; set; }
+
+        public DateTime FechaReg { get; set; }
+        [StringLength(20)]
+        public string UsuarioReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        [StringLength(20)]
+        public string UsuarioMod { get; set; }
+        [StringLength(1)]
+        public string Activo { get; set; }
+        [StringLength(1)]
+        public string Borrado { get; set; }
+    }
+
     public class eva_planeacion
     {
         [Key]
@@ -82,6 +118,29 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public string Activo { get; set; }
         public string Borrado { get; set; }
     }
+
+    public class eva_cat_competencias
+    {
+        public int IdCompetencia { get; set; }
+        public Int16 IdTipoCompetencia { get; set; }
+
+        [StringLength(255)]
+        public string DesCompetencia { get; set; }
+        [StringLength(3000)]
+        public string Detalle { get; set; }
+
+        public DateTime FechaReg { get; set; }
+        [StringLength(20)]
+        public string UsuarioReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        [StringLength(20)]
+        public string UsuarioMod { get; set; }
+        [StringLength(1)]
+        public string Activo { get; set; }
+        [StringLength(1)]
+        public string Borrado { get; set; }
+    }
+
     public class eva_planeacion_temas_competencias
     {
         public Int16 IdAsignatura { get; set; }
@@ -294,6 +353,34 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public string UsuarioUltMod { get; set; }
         public string Borrado { get; set; }
     }
+
+    public class cat_institutos
+    {
+        public Int16 IdInstituto { get; set; }
+        [StringLength(50)]
+        public string DesInstituto { get; set; }
+        [StringLength(50)]
+        public string Alias { get; set; }
+        [StringLength(1)]
+        public string Matriz { get; set; }
+        public Int16 IdInstitutoPadre { get; set; }
+        public Int16 IdTipoGenGiro { get; set; }
+        public Int16 IdGenGiro { get; set; }
+
+        public DateTime FechaReg { get; set; }
+        [StringLength(20)]
+        public string UsuarioReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        [StringLength(20)]
+        public string UsuarioMod { get; set; }
+        [StringLength(1)]
+        public string Activo { get; set; }
+        [StringLength(1)]
+        public string Borrado { get; set; }
+
+    }
+
+
     public class rh_cat_personas
     {
         [Key]
