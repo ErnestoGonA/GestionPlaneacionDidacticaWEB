@@ -1,0 +1,107 @@
+﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_criterios_evalua>
+
+@{
+    ViewData["Title"] = "FicViCriteriosList";
+}
+
+<h2>FicViCriteriosList</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCriterio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAsignatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPlaneacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCompetencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesCriterio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Porcentaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaReg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioReg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaUltMod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioUltMod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Borrado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCriterio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAsignatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPlaneacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCompetencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesCriterio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Porcentaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaReg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioReg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaUltMod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioUltMod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Borrado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

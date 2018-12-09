@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
         public async Task<List<eva_planeacion_temas>> FicGetListTemas()
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/planeacion/temas");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/planeacion/1/temas");
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
