@@ -42,9 +42,9 @@
                     @Html.DisplayFor(modelItem => item.Observaciones)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "FicViTemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema} ) |
+                    @Html.ActionLink("Edit", "FicViTemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema }) |
                     @Html.ActionLink("Details", "FicViTemasDetail", item) |
-                    @Html.ActionLink("Delete", "FicViTemasDelete", item) 
+                    @Html.ActionLink("Delete", "FicViTemasDelete", item, new { onclick = "return confirm('Seguro?');" }) 
                 </td>
             </tr>
 }

@@ -73,5 +73,16 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return null;
         }
 
+        public async Task<string> FicTemasDelete(short IdTema)
+        {
+
+            var respuestaDelete = await client.DeleteAsync("api/planeacion/Temas/"+IdTema);
+            if (respuestaDelete.IsSuccessStatusCode)
+            {
+                return "OK";
+            }
+            return "ERROR";
+        }
+
     }
 }

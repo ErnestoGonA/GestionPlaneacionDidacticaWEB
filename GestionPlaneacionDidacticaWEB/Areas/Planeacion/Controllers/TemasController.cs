@@ -91,10 +91,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViTemasList");
         }
 
-        public IActionResult FicViTemasDelete()
-        {
-            return View();
+        
 
+        public ActionResult FicViTemasDelete(short IdTema)
+        {
+            
+            if (IdTema != null)
+            {
+                FicSrvTemas.FicTemasDelete(IdTema).Wait();
+                return RedirectToAction("FicviTemasList");   
+            }
+            return null;
         }
 
     }
