@@ -51,10 +51,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViTemasList");          
         }
 
-        public IActionResult FicViTemasDetail()
+        public IActionResult FicViTemasDetail(eva_planeacion_temas item)
         {
-            return View();
-
+            try
+            {
+                ViewBag.Title = "Detalle Tema";
+                return View(item);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         public IActionResult FicViTemasUpdate()

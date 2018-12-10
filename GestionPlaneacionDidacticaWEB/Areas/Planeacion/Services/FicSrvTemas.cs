@@ -33,6 +33,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_temas>();
         }
 
+        public async Task<eva_planeacion_temas> FicGetTema(int IdPlaneacion,short IdTema)
+        {
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+IdPlaneacion+"/Temas/"+IdTema);
+            if (FicResponse.IsSuccessStatusCode)
+            {
+                var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<eva_planeacion_temas>(FicRespuesta);
+            }
+            //return null;
+            return new eva_planeacion_temas();
+        }
+
         public async Task<eva_planeacion_temas> FicTemasCreate(eva_planeacion_temas Tema)
         {
             Tema.FechaReg = DateTime.Now;
