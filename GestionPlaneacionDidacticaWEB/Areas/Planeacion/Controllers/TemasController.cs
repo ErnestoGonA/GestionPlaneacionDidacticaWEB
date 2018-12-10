@@ -45,9 +45,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult FicViTemasCreate(eva_planeacion_temas Tema)
+        public ActionResult FicViTemasCreate(eva_planeacion_temas FicTema)
         {
-            FicSrvTemas.FicTemasCreate(Tema).Wait();
+            FicTema.FechaReg = DateTime.Now;
+            FicTema.FechaUltMod = DateTime.Now;
+            FicTema.UsuarioReg = "ERNESTO";
+            FicTema.UsuarioMod = "ERNESTO";
+            FicTema.Activo = "S";
+            FicTema.Borrado = "N";
+            FicSrvTemas.FicTemasCreate(FicTema).Wait();
             return RedirectToAction("FicViTemasList");          
         }
 
@@ -60,14 +66,29 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
 
-        public IActionResult FicViTemasUpdate()
+        public IActionResult FicViTemasEdit(int IdPlaneacion,short IdTema)
         {
-            return View();
+            try
+            {
+                Tema = FicSrvTemas.FicGetTema(IdPlaneacion, IdTema).Result;
+                ViewBag.Title = "Actualizar Tema";
+                return View(Tema);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
+        [HttpPost]
+        public ActionResult FicViTemasEdit(eva_planeacion_temas Tema)
+        {
+            FicSrvTemas.FicTemasUpdate(Tema).Wait();
+            return RedirectToAction("FicViTemasList");
         }
 
         public IActionResult FicViTemasDelete()

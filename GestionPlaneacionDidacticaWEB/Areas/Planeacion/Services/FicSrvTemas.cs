@@ -47,17 +47,26 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
         public async Task<eva_planeacion_temas> FicTemasCreate(eva_planeacion_temas Tema)
         {
-            Tema.FechaReg = DateTime.Now;
-            Tema.FechaUltMod = DateTime.Now;
-            Tema.UsuarioReg = "ERNESTO";
-            Tema.UsuarioMod = "ERNESTO";
-            Tema.Activo = "S";
-            Tema.Borrado = "N";
-
+           
             var json = JsonConvert.SerializeObject(Tema);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var respuestaPost = await client.PostAsync("api/planeacion/Temas", content);
             if (respuestaPost.IsSuccessStatusCode)
+            {
+                return Tema;
+            }
+            return null;
+        }
+
+        public async Task<eva_planeacion_temas> FicTemasUpdate(eva_planeacion_temas Tema)
+        {
+            Tema.FechaUltMod = DateTime.Now;
+            Tema.UsuarioMod = "ERNESTO";
+
+            var json = JsonConvert.SerializeObject(Tema);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPut = await client.PutAsync("api/planeacion/Temas", content);
+            if (respuestaPut.IsSuccessStatusCode)
             {
                 return Tema;
             }
