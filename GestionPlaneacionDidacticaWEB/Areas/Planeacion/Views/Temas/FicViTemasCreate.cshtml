@@ -4,25 +4,28 @@
     ViewData["Title"] = "FicViTemasCreate";
 }
 
-<h2>FicViTemasCreate</h2>
+<h2>Maestro: Ernesto González Arellano</h2>
+<h2>Materia: Desarrollo de aplicaciones empresariales</h2>
+<h2>Planeacion: <input asp-for="IdPlaneacion" disabled></h2>
 
-<h4>eva_planeacion_temas</h4>
+<h2>Crear Tema</h2>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="FicViTemasCreate">
+        <form asp-action="FicViTemasCreate" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="IdTema" class="control-label"></label>
                 <input asp-for="IdTema" class="form-control" />
                 <span asp-validation-for="IdTema" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden >
                 <label asp-for="IdAsignatura" class="control-label"></label>
                 <input asp-for="IdAsignatura" class="form-control" />
                 <span asp-validation-for="IdAsignatura" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="IdPlaneacion" class="control-label"></label>
                 <input asp-for="IdPlaneacion" class="form-control" />
                 <span asp-validation-for="IdPlaneacion" class="text-danger"></span>
@@ -37,45 +40,45 @@
                 <input asp-for="Observaciones" class="form-control" />
                 <span asp-validation-for="Observaciones" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group" hidden>
                 <label asp-for="FechaReg" class="control-label"></label>
                 <input asp-for="FechaReg" class="form-control" />
                 <span asp-validation-for="FechaReg" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="UsuarioReg" class="control-label"></label>
                 <input asp-for="UsuarioReg" class="form-control" />
                 <span asp-validation-for="UsuarioReg" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="FechaUltMod" class="control-label"></label>
                 <input asp-for="FechaUltMod" class="form-control" />
                 <span asp-validation-for="FechaUltMod" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UsuarioUltMod" class="control-label"></label>
-                <input asp-for="UsuarioUltMod" class="form-control" />
-                <span asp-validation-for="UsuarioUltMod" class="text-danger"></span>
+            <div class="form-group" hidden>
+                <label asp-for="UsuarioMod" class="control-label"></label>
+                <input asp-for="UsuarioMod" class="form-control" />
+                <span asp-validation-for="UsuarioMod" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="Activo" class="control-label"></label>
                 <input asp-for="Activo" class="form-control" />
                 <span asp-validation-for="Activo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="Borrado" class="control-label"></label>
                 <input asp-for="Borrado" class="form-control" />
                 <span asp-validation-for="Borrado" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViTemasList">Back to List</a>
 </div>
 
 @section Scripts {

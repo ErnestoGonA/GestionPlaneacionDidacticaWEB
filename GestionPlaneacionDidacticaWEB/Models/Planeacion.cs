@@ -73,7 +73,7 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public DateTime FechaReg { get; set; }
         public string UsuarioReg { get; set; }
         public DateTime FechaUltMod { get; set; }
-        public string UsuarioUltMod { get; set; }
+        public string UsuarioMod { get; set; }
         public string Activo { get; set; }
         public string Borrado { get; set; }
     }

@@ -35,5 +35,39 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
+        public IActionResult FicViTemasCreate()
+        {
+            var Tema = new eva_planeacion_temas();
+            Tema.IdPlaneacion = 1;
+            Tema.IdAsignatura = 1;
+            return View(Tema);
+        }
+
+        [HttpPost]
+        public ActionResult FicViTemasCreate(eva_planeacion_temas Tema)
+        {
+            FicSrvTemas.FicTemasCreate(Tema).Wait();
+            return RedirectToAction("FicViTemasList");          
+        }
+
+        public IActionResult FicViTemasDetail()
+        {
+            return View();
+
+        }
+
+        public IActionResult FicViTemasUpdate()
+        {
+            return View();
+
+        }
+
+        public IActionResult FicViTemasDelete()
+        {
+            return View();
+
+        }
+
     }
 }
