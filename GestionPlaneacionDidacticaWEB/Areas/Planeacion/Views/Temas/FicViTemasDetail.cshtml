@@ -4,10 +4,15 @@
     ViewData["Title"] = "FicViTemasDetail";
 }
 
-<h2>FicViTemasDetail</h2>
+<h2>Maestro: Ernesto González Arellano</h2>
+<h2>Materia: Desarrollo de aplicaciones empresariales</h2>
+<h2>
+    Planeacion: @Html.DisplayFor(model => model.IdPlaneacion)
+</h2>
+
+<h2>Detalles del tema</h2>
 
 <div>
-    <h4>eva_planeacion_temas</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -15,18 +20,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdTema)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IdAsignatura)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdAsignatura)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IdPlaneacion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdPlaneacion)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DesTema)
@@ -59,10 +52,10 @@
             @Html.DisplayFor(model => model.FechaUltMod)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UsuarioUltMod)
+            @Html.DisplayNameFor(model => model.UsuarioMod)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UsuarioUltMod)
+            @Html.DisplayFor(model => model.UsuarioMod)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Activo)
@@ -79,6 +72,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "FicViTemasEdit", Model ) |
+    <a asp-action="FicViTemasList">Back to List</a>
 </div>
