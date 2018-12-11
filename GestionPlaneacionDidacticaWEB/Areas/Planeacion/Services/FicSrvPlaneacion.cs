@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
@@ -29,6 +30,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             }
             //return null;
             return new List<eva_planeacion>();
+        }
+
+        public async Task<eva_planeacion> FicPlaneacionCreate(eva_planeacion planeacion)
+        {
+
+            var json = JsonConvert.SerializeObject(planeacion);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPost = await client.PostAsync("api/Planeaciones/NewPlaneacion/", content);
+            if (respuestaPost.IsSuccessStatusCode)
+            {
+                return planeacion;
+            }
+            return null;
         }
     }
 }

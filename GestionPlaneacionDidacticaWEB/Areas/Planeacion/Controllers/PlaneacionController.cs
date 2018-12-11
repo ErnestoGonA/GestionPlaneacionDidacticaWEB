@@ -31,5 +31,31 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
+        public IActionResult FicViPlaneacionCreate()
+        {
+            var planeacion = new eva_planeacion();
+            planeacion.IdPlaneacion = 1;
+            planeacion.IdAsignatura = 1;
+            planeacion.IdPeriodo = 1;
+
+            return View(planeacion);
+        }
+
+        [HttpPost]
+        public ActionResult FicViPlaneacionCreate(eva_planeacion planeacion)
+        {
+            planeacion.FechaReg = DateTime.Now;
+            planeacion.FechaUltMod = DateTime.Now;
+            planeacion.UsuarioReg = "PEDRO";
+            planeacion.UsuarioMod = "PEDRO";
+            planeacion.Activo = "S";
+            planeacion.Borrado = "N";
+            planeacion.IdPlaneacion = 3;
+            planeacion.IdAsignatura = 1;
+            planeacion.IdPeriodo = 1;
+            FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            return RedirectToAction("FicViPlaneacionList");
+        }
     }
 }
