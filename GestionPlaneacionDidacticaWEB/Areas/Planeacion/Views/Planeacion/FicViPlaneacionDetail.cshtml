@@ -1,0 +1,108 @@
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion
+
+@{
+    ViewData["Title"] = "FicViPlaneacionDetail";
+}
+
+<h2>FicViPlaneacionDetail</h2>
+
+<div>
+    <h4>eva_planeacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPlaneacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPlaneacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAsignatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAsignatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenciaNorma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenciaNorma)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Revision)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Revision)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Actual)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompetenciaAsignatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompetenciaAsignatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantillaOriginal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlantillaOriginal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AportacionPerfilEgreso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AportacionPerfilEgreso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPeriodo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPeriodo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaUltMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaUltMod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioMod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Borrado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Borrado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

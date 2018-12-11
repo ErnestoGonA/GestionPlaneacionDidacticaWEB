@@ -25,6 +25,9 @@
                 @Html.DisplayNameFor(model => model.Actual)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PlantillaOriginal)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CompetenciaAsignatura)
             </th>
             <th>
@@ -49,15 +52,18 @@
                 @Html.DisplayFor(modelItem => item.Actual)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PlantillaOriginal)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CompetenciaAsignatura)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AportacionPerfilEgreso)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion=item.IdPlaneacion }) |
+                @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
+                @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion=item.IdPlaneacion })
             </td>
         </tr>
 }

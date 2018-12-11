@@ -52,6 +52,7 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public string Revision { get; set; }
         public string Actual { get; set; }
         public string CompetenciaAsignatura { get; set; }
+        public string PlantillaOriginal { get; set; }
         public string AportacionPerfilEgreso { get; set; }
         public Int16 IdPeriodo { get; set; }
         public DateTime FechaReg { get; set; }

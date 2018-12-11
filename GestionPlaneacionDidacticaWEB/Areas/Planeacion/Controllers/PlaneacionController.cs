@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                FicListaPlaneacion = FicSrvPlaneacion.FicGetListTemas().Result;
+                FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion().Result;
                 ViewBag.Title = "Catalogo de planeaciones";
                 return View(FicListaPlaneacion);
             }
@@ -51,10 +51,48 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             planeacion.UsuarioMod = "PEDRO";
             planeacion.Activo = "S";
             planeacion.Borrado = "N";
-            planeacion.IdPlaneacion = 3;
+            planeacion.IdPlaneacion = 4;
             planeacion.IdAsignatura = 1;
             planeacion.IdPeriodo = 1;
             FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            return RedirectToAction("FicViPlaneacionList");
+        }
+        public IActionResult FicViPlaneacionDetail(eva_planeacion item)
+        {
+            try
+            {
+                ViewBag.Title = "Detalle Planeación";
+                return View(item);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public IActionResult FicViPlaneacionEdit(int IdPlaneacion)
+        {
+            try
+            {
+                planeacion = FicSrvPlaneacion.FicGetPlaneacion(IdPlaneacion).Result;
+                ViewBag.Title = "Actualizar planeación";
+                return View(planeacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        //[HttpPut]
+        public ActionResult FicViPlaneacionEditPut(eva_planeacion planeacion)
+        {
+            FicSrvPlaneacion.FicPlaneacionUpdate(planeacion).Wait();
+            return RedirectToAction("FicViPlaneacionList");
+        }
+
+        public ActionResult FicViPlaneacionDelete(int IdPlaneacion)
+        {
+            FicSrvPlaneacion.FicPlaneacionDelete(IdPlaneacion).Wait();
             return RedirectToAction("FicViPlaneacionList");
         }
     }
