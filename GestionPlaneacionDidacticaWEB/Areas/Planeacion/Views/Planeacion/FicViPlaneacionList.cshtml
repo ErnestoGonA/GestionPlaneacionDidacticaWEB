@@ -1,0 +1,65 @@
+﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion>
+
+@{
+    ViewData["Title"] = "FicViPlaneacionList";
+}
+
+<h2>FicViPlaneacionList</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPlaneacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenciaNorma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Revision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompetenciaAsignatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AportacionPerfilEgreso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPlaneacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferenciaNorma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Revision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompetenciaAsignatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AportacionPerfilEgreso)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
