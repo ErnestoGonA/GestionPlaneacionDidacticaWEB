@@ -4,10 +4,13 @@
     ViewData["Title"] = "FicViSubtemasList";
 }
 
-<h2>FicViSubtemasList</h2>
+<h3>Maestro: Bryan Gutiérrez</h3>
+<h3>Materia: Desarrollo de aplicaciones empresariales</h3>
+
+<h2>Lista subtemas </h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="FicViSubtemasCreate">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -16,80 +19,27 @@
                 @Html.DisplayNameFor(model => model.IdSubtema)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdAsignatura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPlaneacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdTema)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.DesSubtema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaReg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioReg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaUltMod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioUltMod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Borrado)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdSubtema)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAsignatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPlaneacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdTema)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DesSubtema)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaReg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioReg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaUltMod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioUltMod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Borrado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdSubtema)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DesSubtema)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "FicViSubtemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdSubtema = item.IdSubtema, IdAsignatura = item.IdAsignatura }) |
+                    @Html.ActionLink("Details", "FicViSubtemasDetail", item) |
+                    @Html.ActionLink("Delete", "FicViSubtemasDelete", item.IdSubtema, new { onclick = "return confirm('¿Seguro?');" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

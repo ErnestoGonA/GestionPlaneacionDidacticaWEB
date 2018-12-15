@@ -23,7 +23,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
         public async Task<List<eva_planeacion_subtemas>> FicGetListSubtemas(eva_planeacion_temas tema)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+tema.IdPlaneacion+"/Temas/"+ tema.IdTema+ "/Subtemas/"+ tema.IdAsignatura);
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+tema.IdPlaneacion+"/Temas/"+ tema.IdTema+ "/Subtemas/"+ tema.IdAsignatura + "");
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
