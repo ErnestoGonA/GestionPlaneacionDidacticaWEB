@@ -104,5 +104,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return null;
         }
 
+        public IActionResult FicViSubtemasList(int IdPlaneacion, short IdTema, short IdAsignatura)
+        {
+            try
+            {
+                return RedirectToAction("FicViSubtemasList", "Subtemas", new { IdPlaneacion,IdTema,IdAsignatura });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

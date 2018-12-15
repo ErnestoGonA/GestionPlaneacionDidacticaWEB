@@ -43,7 +43,8 @@
                 <td>
                     @Html.ActionLink("Edit", "FicViTemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema }) |
                     @Html.ActionLink("Details", "FicViTemasDetail", item) |
-                    @Html.ActionLink("Delete", "FicViTemasDelete", item, new { onclick = "return confirm('Seguro?');" }) 
+                    @Html.ActionLink("Delete", "FicViTemasDelete", item, new { onclick = "return confirm('Seguro?');" }) |
+                    @Html.ActionLink("Subtemas", "FicViSubtemasList", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdAsignatura = item.IdAsignatura })
                 </td>
             </tr>
 }
