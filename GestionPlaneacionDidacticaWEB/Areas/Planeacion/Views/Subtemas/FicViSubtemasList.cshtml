@@ -35,9 +35,9 @@
                     @Html.DisplayFor(modelItem => item.DesSubtema)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "FicViSubtemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdSubtema = item.IdSubtema, IdAsignatura = item.IdAsignatura }) |
+                    @Html.ActionLink("Edit", "FicViSubtemasEdit", new { IdPlaneacion = (short)item.IdPlaneacion, IdTema = item.IdTema,IdSubtema = item.IdSubtema,IdAsignatura = item.IdAsignatura }) |
                     @Html.ActionLink("Details", "FicViSubtemasDetail", item) |
-                    @Html.ActionLink("Delete", "FicViSubtemasDelete", item.IdSubtema, new { onclick = "return confirm('¿Seguro?');" })
+                    @Html.ActionLink("Delete", "FicViSubtemasDelete", item, new { onclick = "return confirm('¿Seguro?');" })
                 </td>
             </tr>
         }

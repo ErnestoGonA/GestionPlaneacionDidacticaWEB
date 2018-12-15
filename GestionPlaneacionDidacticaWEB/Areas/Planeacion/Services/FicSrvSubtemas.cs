@@ -21,9 +21,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_subtemas>> FicGetListSubtemas(eva_planeacion_temas tema)
+        public async Task<List<eva_planeacion_subtemas>> FicGetListSubtemas(int IdPlaneacion, short IdTema, short IdAsignatura)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+tema.IdPlaneacion+"/Temas/"+ tema.IdTema+ "/Subtemas/"+ tema.IdAsignatura + "");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+IdPlaneacion+"/Temas/"+IdTema+ "/Subtemas/"+IdAsignatura);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
@@ -32,12 +32,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_subtemas>();
         }
 
-        public async Task<eva_planeacion_subtemas> FicGetSubtema(int IdPlaneacion, short IdTema,short IdAsignatura, short IdSubtema)
+        public async Task<eva_planeacion_subtemas> FicGetSubtema(short IdPlaneacion, short IdTema,short IdAsignatura, short IdSubtema)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+ IdPlaneacion + "/" + IdAsignatura + "/" + IdTema + "/" + IdSubtema + "");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+ IdPlaneacion + "/" + IdAsignatura + "/" + IdTema + "/" + IdSubtema);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\n" + FicRespuesta);
                 return JsonConvert.DeserializeObject<eva_planeacion_subtemas>(FicRespuesta);
             }
             //return null;

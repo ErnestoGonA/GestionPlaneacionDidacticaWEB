@@ -48,6 +48,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\n" + FicRespuesta);
                 return JsonConvert.DeserializeObject<eva_planeacion_temas>(FicRespuesta);
             }
             //return null;
