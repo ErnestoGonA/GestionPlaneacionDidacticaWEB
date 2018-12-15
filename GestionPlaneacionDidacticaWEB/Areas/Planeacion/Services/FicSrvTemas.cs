@@ -21,9 +21,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_temas>> FicGetListTemas()
+        public async Task<List<eva_planeacion_temas>> FicGetListTemas(eva_planeacion planeacion)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/1/Temas");
+            //HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/1/Temas");
+            //if (FicResponse.IsSuccessStatusCode)
+            //{
+            //    var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+            //    return JsonConvert.DeserializeObject<List<eva_planeacion_temas>>(FicRespuesta);
+            //}
+            ////return null;
+            //return new List<eva_planeacion_temas>();
+
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/"+planeacion.IdAsignatura+"/Planeacion/"+planeacion.IdPlaneacion+"/Temas");
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
@@ -84,5 +93,16 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return "ERROR";
         }
 
+        public async Task<List<eva_planeacion_temas>> FicGetListPlaneacionTemas(eva_planeacion planeacion)
+        {
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/"+planeacion.IdAsignatura+"/Planeacion/"+planeacion.IdPlaneacion+"/Temas");
+            if (FicResponse.IsSuccessStatusCode)
+            {
+                var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<eva_planeacion_temas>>(FicRespuesta);
+            }
+            //return null;
+            return new List<eva_planeacion_temas>();
+        }
     }
 }

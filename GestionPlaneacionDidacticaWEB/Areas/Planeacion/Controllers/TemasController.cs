@@ -22,11 +22,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvTemas = new FicSrvTemas();
         }
 
-        public IActionResult FicViTemasList()
+        public IActionResult FicViTemasList(eva_planeacion planeacion)
         {
             try
             {
-                FicListaTemas = FicSrvTemas.FicGetListTemas().Result;
+                FicListaTemas = FicSrvTemas.FicGetListTemas(planeacion).Result;
                 ViewBag.Title = "Catalogo de temas";
                 return View(FicListaTemas);
             }

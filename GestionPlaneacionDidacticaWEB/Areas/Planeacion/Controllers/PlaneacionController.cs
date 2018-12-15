@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
 using GestionPlaneacionDidacticaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 {
@@ -12,11 +13,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
     public class PlaneacionController : Controller
     {
         FicSrvPlaneacion FicSrvPlaneacion;
+        FicSrvTemas FicSrvTemas;
         List<eva_planeacion> FicListaPlaneacion;
         eva_planeacion planeacion;
+        TemasController controller;
+
         public PlaneacionController()
         {
             FicSrvPlaneacion = new FicSrvPlaneacion();
+            controller = new TemasController();
         }
         public IActionResult FicViPlaneacionList()
         {
@@ -94,6 +99,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             FicSrvPlaneacion.FicPlaneacionDelete(IdPlaneacion).Wait();
             return RedirectToAction("FicViPlaneacionList");
+        }
+
+        public IActionResult FicViTemasList(eva_planeacion planeacion)
+        {
+            try
+            {
+                return RedirectToAction("FicViTemasList", "Temas", planeacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

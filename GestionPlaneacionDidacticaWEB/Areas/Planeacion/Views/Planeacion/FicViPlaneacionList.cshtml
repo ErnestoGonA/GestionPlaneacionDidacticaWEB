@@ -61,9 +61,10 @@
                 @Html.DisplayFor(modelItem => item.AportacionPerfilEgreso)
             </td>
             <td>
-                @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion=item.IdPlaneacion }) |
+                @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
                 @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
-                @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion=item.IdPlaneacion })
+                @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion })
+                @Html.ActionLink("Temas", "FicViTemasList", item) 
             </td>
         </tr>
 }
