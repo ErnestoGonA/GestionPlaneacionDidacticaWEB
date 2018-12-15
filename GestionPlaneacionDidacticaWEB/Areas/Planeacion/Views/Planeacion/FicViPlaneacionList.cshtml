@@ -4,70 +4,89 @@
     ViewData["Title"] = "FicViPlaneacionList";
 }
 
-<h2>FicViPlaneacionList</h2>
+<br />
+<br />
+<div class="form-group text-center col-sm-12">
+    <label class="control-label  col-sm-12">Usuario</label>
+    @Html.DropDownList("Us", null, htmlAttributes: new { @class = "form-control" })
+    <br>
+    <label class="control-label  col-sm-12">Asignatura</label>
+    @Html.DropDownList("Asi", null, htmlAttributes: new { @class = "form-control" })
+    <br>
+    <label class="control-label  col-sm-12">Periodo</label>
+    @Html.DropDownList("Per", null, htmlAttributes: new { @class = "form-control" })
+</div>
 
-<p>
-    <a asp-action="FicViPlaneacionCreate">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPlaneacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReferenciaNorma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Revision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Actual)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlantillaOriginal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompetenciaAsignatura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AportacionPerfilEgreso)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPlaneacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReferenciaNorma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Revision)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Actual)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlantillaOriginal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompetenciaAsignatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AportacionPerfilEgreso)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
-                @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
-                @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion })
-                @Html.ActionLink("Temas", "FicViTemasList", item)
-                @Html.ActionLink("Apoyos", "FicViApoyosList", item)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<br />
+
+<div class="form-group text-center col-sm-12">
+    <h2 class="form-group text-center col-sm-12">Lista de Planeaciones</h2>
+
+    <p class=" btn btn-warning text-left col-sm-2 "  >
+        <a  class="text-light" asp-action="FicViPlaneacionCreate">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPlaneacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReferenciaNorma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Revision)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Actual)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlantillaOriginal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompetenciaAsignatura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AportacionPerfilEgreso)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPlaneacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReferenciaNorma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Revision)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Actual)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlantillaOriginal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompetenciaAsignatura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AportacionPerfilEgreso)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
+                        @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
+                        @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion })
+                        @Html.ActionLink("Temas", "FicViTemasList", item)
+                        @Html.ActionLink("Apoyos", "FicViApoyosList", item)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

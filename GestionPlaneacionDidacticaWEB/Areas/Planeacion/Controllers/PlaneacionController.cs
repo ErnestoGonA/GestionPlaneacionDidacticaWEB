@@ -6,6 +6,7 @@ using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
 using GestionPlaneacionDidacticaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 {
@@ -30,6 +31,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
+                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");;
+                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
+                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
                 FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion().Result;
                 ViewBag.Title = "Catalogo de planeaciones";
                 return View(FicListaPlaneacion);
@@ -44,8 +48,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             var planeacion = new eva_planeacion();
             planeacion.IdPlaneacion = 1;
-            planeacion.IdAsignatura = 1;
-            planeacion.IdPeriodo = 1;
+            planeacion.IdAsignatura = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
+            planeacion.IdPeriodo = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
 
             return View(planeacion);
         }
