@@ -17,11 +17,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         List<eva_planeacion> FicListaPlaneacion;
         eva_planeacion planeacion;
         TemasController controller;
+        FicSrvApoyos FicSrvApoyos;
+        ApoyosController apoyoscontroller;
 
         public PlaneacionController()
         {
             FicSrvPlaneacion = new FicSrvPlaneacion();
             controller = new TemasController();
+            apoyoscontroller = new ApoyosController();
         }
         public IActionResult FicViPlaneacionList()
         {
