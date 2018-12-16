@@ -100,6 +100,7 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public int IdPlaneacion { get; set; }
         public Int16 IdFuente { get; set; }
         public Int16 Prioridad { get; set; }
+        public string Observaciones { get; set; }
         public string UsuarioReg { get; set; }
         public DateTime FechaReg { get; set; }
         public DateTime FechaUltMod { get; set; }

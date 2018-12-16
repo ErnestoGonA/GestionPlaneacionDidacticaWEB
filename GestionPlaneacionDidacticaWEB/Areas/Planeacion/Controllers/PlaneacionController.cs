@@ -31,9 +31,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");;
-                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
-                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
+                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); 
+                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text");
                 FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion().Result;
                 ViewBag.Title = "Catalogo de planeaciones";
                 return View(FicListaPlaneacion);
@@ -119,5 +119,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
+        public IActionResult FicViFuentesList(eva_planeacion planeacion)
+        {
+            try
+            {
+                return RedirectToAction("FicViFuentesList", "Fuentes", new { planeacion.IdPlaneacion, planeacion.IdAsignatura });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
     }
 }
