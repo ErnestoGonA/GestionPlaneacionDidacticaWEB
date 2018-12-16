@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "FicViTemasDetail";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>Maestro: Ernesto González Arellano</h2>
@@ -72,6 +74,5 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "FicViTemasEdit", Model ) |
-    <a asp-action="FicViTemasList">Back to List</a>
+    <a asp-action="FicViTemasList" asp-route-IdAsignatura=@idAsignatura asp-route-IdPlaneacion=@idPlaneacion>Back to List</a>
 </div>

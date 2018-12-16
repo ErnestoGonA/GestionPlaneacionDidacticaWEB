@@ -112,7 +112,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                return RedirectToAction("FicViTemasList", "Temas", planeacion);
+                return RedirectToAction("FicViTemasList", "Temas", new { planeacion.IdAsignatura,planeacion.IdPlaneacion});
             }
             catch (Exception e)
             {
