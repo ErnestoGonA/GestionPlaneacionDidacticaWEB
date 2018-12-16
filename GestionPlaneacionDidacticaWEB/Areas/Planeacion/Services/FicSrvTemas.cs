@@ -21,18 +21,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_temas>> FicGetListTemas(eva_planeacion planeacion)
+        public async Task<List<eva_planeacion_temas>> FicGetListTemas(short IdAsignatura,int IdPlaneacion)
         {
-            //HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/1/Temas");
-            //if (FicResponse.IsSuccessStatusCode)
-            //{
-            //    var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
-            //    return JsonConvert.DeserializeObject<List<eva_planeacion_temas>>(FicRespuesta);
-            //}
-            ////return null;
-            //return new List<eva_planeacion_temas>();
-
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/"+planeacion.IdAsignatura+"/Planeacion/"+planeacion.IdPlaneacion+"/Temas");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/"+IdAsignatura+"/Planeacion/"+IdPlaneacion+"/Temas");
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
@@ -42,9 +33,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_temas>();
         }
 
-        public async Task<eva_planeacion_temas> FicGetTema(int IdPlaneacion,short IdTema)
+        public async Task<eva_planeacion_temas> FicGetTema(short IdAsignatura,int IdPlaneacion,short IdTema)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/"+IdPlaneacion+"/Temas/"+IdTema);
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/"+IdAsignatura+"/Planeacion/"+IdPlaneacion+"/Temas/"+IdTema);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
@@ -83,10 +74,10 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return null;
         }
 
-        public async Task<string> FicTemasDelete(short IdTema)
+        public async Task<string> FicTemasDelete(short IdAsignatura,int IdPlaneacion,short IdTema)
         {
 
-            var respuestaDelete = await client.DeleteAsync("api/planeacion/Temas/"+IdTema);
+            var respuestaDelete = await client.DeleteAsync("api/asignatura/"+IdAsignatura+"/planeacion/"+IdPlaneacion+"/Temas/"+IdTema);
             if (respuestaDelete.IsSuccessStatusCode)
             {
                 return "OK";

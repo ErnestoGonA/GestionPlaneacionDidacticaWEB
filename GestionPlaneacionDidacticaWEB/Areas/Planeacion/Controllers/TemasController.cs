@@ -22,11 +22,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvTemas = new FicSrvTemas();
         }
 
-        public IActionResult FicViTemasList(eva_planeacion planeacion)
+        public IActionResult FicViTemasList(short IdAsignatura, int IdPlaneacion)
         {
             try
             {
-                FicListaTemas = FicSrvTemas.FicGetListTemas(planeacion).Result;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                FicListaTemas = FicSrvTemas.FicGetListTemas(IdAsignatura,IdPlaneacion).Result;
                 ViewBag.Title = "Catalogo de temas";
                 return View(FicListaTemas);
             }
@@ -36,11 +38,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViTemasCreate()
+        public IActionResult FicViTemasCreate(short IdAsignatura, int IdPlaneacion)
         {
             var Tema = new eva_planeacion_temas();
-            Tema.IdPlaneacion = 1;
-            Tema.IdAsignatura = 1;
+            Tema.IdAsignatura = IdAsignatura;
+            Tema.IdPlaneacion = IdPlaneacion;
             return View(Tema);
         }
 
@@ -54,13 +56,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicTema.Activo = "S";
             FicTema.Borrado = "N";
             FicSrvTemas.FicTemasCreate(FicTema).Wait();
-            return RedirectToAction("FicViTemasList");          
+            return RedirectToAction("FicViTemasList", new { FicTema.IdAsignatura,FicTema.IdPlaneacion});
         }
 
         public IActionResult FicViTemasDetail(eva_planeacion_temas item)
         {
             try
             {
+                ViewBag.IdAsignatura = item.IdAsignatura;
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
                 ViewBag.Title = "Detalle Tema";
                 return View(item);
             }
@@ -70,13 +74,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViTemasEdit(int IdPlaneacion,short IdTema)
+        public IActionResult FicViTemasEdit(short IdAsignatura, int IdPlaneacion, short IdTema)
         {
             try
             {
-                Tema = FicSrvTemas.FicGetTema(IdPlaneacion, IdTema).Result;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                eva_planeacion_temas tema = FicSrvTemas.FicGetTema(IdAsignatura, IdPlaneacion, IdTema).Result;
                 ViewBag.Title = "Actualizar Tema";
-                return View(Tema);
+                return View(tema);
             }
             catch (Exception e)
             {
@@ -88,18 +94,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         public ActionResult FicViTemasEdit(eva_planeacion_temas Tema)
         {
             FicSrvTemas.FicTemasUpdate(Tema).Wait();
-            return RedirectToAction("FicViTemasList");
+            return RedirectToAction("FicViTemasList", new { Tema.IdAsignatura, Tema.IdPlaneacion });
         }
 
         
 
-        public ActionResult FicViTemasDelete(short IdTema)
+        public ActionResult FicViTemasDelete(eva_planeacion_temas tema)
         {
             
-            if (IdTema != null)
+            if (tema != null)
             {
-                FicSrvTemas.FicTemasDelete(IdTema).Wait();
-                return RedirectToAction("FicviTemasList");   
+                FicSrvTemas.FicTemasDelete(tema.IdAsignatura, tema.IdPlaneacion, tema.IdTema).Wait();
+                return RedirectToAction("FicViTemasList", new { tema.IdAsignatura, tema.IdPlaneacion });
             }
             return null;
         }

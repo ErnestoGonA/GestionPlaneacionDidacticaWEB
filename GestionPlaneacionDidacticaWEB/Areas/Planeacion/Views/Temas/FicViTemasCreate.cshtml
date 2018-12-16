@@ -2,11 +2,13 @@
 
 @{
     ViewData["Title"] = "FicViTemasCreate";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>Maestro: Ernesto González Arellano</h2>
 <h2>Materia: Desarrollo de aplicaciones empresariales</h2>
-<h2>Planeacion: @Html.DisplayFor(model => model.IdPlaneacion)</h2>
+<h2>Planeacion: @idPlaneacion</h2>
 
 <h2>Crear Tema</h2>
 
@@ -78,7 +80,7 @@
 </div>
 
 <div>
-    <a asp-action="FicViTemasList">Back to List</a>
+    <a asp-action="FicViTemasList" asp-route-IdAsignatura=@idAsignatura asp-route-IdPlaneacion=@idPlaneacion>Back to List</a>
 </div>
 
 @section Scripts {
