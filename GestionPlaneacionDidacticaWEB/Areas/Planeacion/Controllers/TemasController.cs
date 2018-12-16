@@ -122,5 +122,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
+        
+        public IActionResult FicViCompetenciasList(int IdPlaneacion, short IdTema, short IdAsignatura)
+        {
+            try
+            {
+                return RedirectToAction("FicViCompetenciasList", "Competencias", new {IdAsignatura,IdPlaneacion, IdTema });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

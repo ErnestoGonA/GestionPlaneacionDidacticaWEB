@@ -47,7 +47,8 @@
                     @Html.ActionLink("Edit", "FicViTemasEdit", item) |
                     @Html.ActionLink("Details", "FicViTemasDetail", item) |
                     @Html.ActionLink("Delete", "FicViTemasDelete", item, new { onclick = "return confirm('Seguro?');" }) |
-                    @Html.ActionLink("Subtemas", "FicViSubtemasList", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdAsignatura = item.IdAsignatura })
+                    @Html.ActionLink("Subtemas", "FicViSubtemasList", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdAsignatura = item.IdAsignatura }) |
+                    @Html.ActionLink("Competencias", "FicViCompetenciasList", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema})
                 </td>
             </tr>
 }
