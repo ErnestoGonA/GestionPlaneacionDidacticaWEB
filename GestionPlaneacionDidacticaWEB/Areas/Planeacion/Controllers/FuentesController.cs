@@ -1,6 +1,7 @@
 ﻿using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
 using GestionPlaneacionDidacticaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,10 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
 
-        public IActionResult FicViFuentesList(int IdPlaneacion, short IdAsignatura, string mensaje)
+        public IActionResult FicViFuentesList(int IdPlaneacion, short IdAsignatura)
         {
             try
             {
-                ViewBag.Mensaje = mensaje;
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 FicListaFuentes = FicSrvFuentes.FicGetListFuentes((short)IdPlaneacion,IdAsignatura).Result;
@@ -65,8 +65,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 FicSrvFuentes.FicFuentesCreate(FicFuente).Wait();
                 return RedirectToAction("FicViFuentesList", new { FicFuente.IdPlaneacion, FicFuente.IdAsignatura });
             }
-           var mensaje = "El idFuente ya existe";
-           return RedirectToAction("FicViFuentesList", new { FicFuente.IdPlaneacion, FicFuente.IdAsignatura,mensaje }); 
+            return RedirectToAction("FicViFuentesList", new { FicFuente.IdPlaneacion, FicFuente.IdAsignatura }); 
         }
 
         public IActionResult FicViFuentesDetail(eva_planeacion_fuentes item)
