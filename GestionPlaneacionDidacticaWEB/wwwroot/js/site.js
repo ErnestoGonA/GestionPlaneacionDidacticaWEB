@@ -3,6 +3,7 @@
 
 // Write your JavaScript code.
 
+var a = 1, p = 1, u = 1;
 
 var url = "http://localhost:53483/api/Planeacion/Asignaturas";
 var targetDropdown = $("#Asi");
@@ -32,7 +33,7 @@ targetDropdown1.append($("<option value=2> Ernesto </option>"));
 targetDropdown1.append($("<option value=3> Gil </option>"));
 targetDropdown1.append($("<option value=4> Guillermo </option>"));
 targetDropdown1.append($("<option value=5> Ana </option>"));
-        
+
 
 var url = "http://localhost:53483/api/Planeacion/NombresFuentes";
 var targetDropdow = $("#Fuentes");
@@ -43,3 +44,29 @@ $.get(url, function (json) {
         targetDropdow.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
     }
 });
+
+$(document).ready(function () {
+    if (idA!= null) {
+        $('#Asi').change(function () {
+            a = $(this).val();
+            //alert("You have Selected  :: " + $(this).val());
+            $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
+        });
+        $('#Per').change(function () {
+            p = $(this).val();
+            //alert("You have Selected  :: " + $(this).val());
+            $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
+        });
+        $('#Us').change(function () {
+            u = $(this).val();
+            //alert("You have Selected  :: " + $(this).val());
+            $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            alert("You have Selected :: Asignatura:" + a +" Planeación: "+ p +" Usuario: "+ u);
+        });
+    }
+});
+    
+        
+            
