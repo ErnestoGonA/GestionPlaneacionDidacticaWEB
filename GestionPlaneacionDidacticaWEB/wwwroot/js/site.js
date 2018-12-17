@@ -47,12 +47,12 @@ $.get(url, function (json) {
 
 
 var url = "http://localhost:53483/api/Planeacion/NombresApoyosDidacticos";
-var targetDropdow = $("#Apoyos");
-targetDropdow.attr('disabled', false);
-targetDropdow.empty();
+var targetDropdowAP = $("#Apoyos");
+targetDropdowAP.attr('disabled', false);
+targetDropdowAP.empty();
 $.get(url, function (json) {
     for (var i = 0; i <= json.length - 1; i++) {
-        targetDropdow.append($("<option value=" + json[i].IdApoyoDidactico + ">" + json[i].DesApoyoDidactico + "</option>"));
+        targetDropdowAP.append($("<option value=" + json[i].IdApoyoDidactico + ">" + json[i].DesApoyoDidactico + "</option>"));
     }
 });
 
