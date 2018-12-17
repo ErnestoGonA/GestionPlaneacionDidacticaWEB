@@ -80,6 +80,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         [HttpPost]
         public ActionResult FicViPlaneacionCreate(eva_planeacion planeacion)
         {
+            planeacion.IdPeriodo = Int16.Parse(Request.Form["idPeriodo"].ToString());
+            planeacion.IdAsignatura = Int16.Parse(Request.Form["idAsignatura"].ToString());
             planeacion.FechaReg = DateTime.Now;
             planeacion.FechaUltMod = DateTime.Now;
             planeacion.UsuarioReg = "PEDRO";
@@ -147,7 +149,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             try
             {
                 return RedirectToAction("FicViApoyosList", "Apoyos", planeacion);
-                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
         public IActionResult FicViFuentesList(eva_planeacion planeacion)
         {
             try
@@ -160,5 +168,6 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
     }
 }
