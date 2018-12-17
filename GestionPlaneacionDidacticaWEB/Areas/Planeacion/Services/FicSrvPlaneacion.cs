@@ -20,9 +20,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.BaseAddress = new Uri("http://localhost:53483/");
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public async Task<List<eva_planeacion>> FicGetListPlaneacion()
+        public async Task<List<eva_planeacion>> FicGetListPlaneacion(short idAsignatura,short idPeriodo)
         {
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeaciones");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeaciones/"+idAsignatura+"/"+idPeriodo);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
