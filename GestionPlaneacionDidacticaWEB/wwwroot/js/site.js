@@ -67,6 +67,18 @@ $.get(url, function (json) {
     }
 });
 
+var url = "http://localhost:53483/api/ActividadEnseñanza";
+var targetDropdownAE = $("#AE");
+targetDropdownAE.attr('disabled', false);
+targetDropdownAE.empty();
+$.get(url, function (json) {
+    for (var i = 0; i <= json.length - 1; i++) {
+        targetDropdownAE.append($("<option value=" + json[i].IdActividadEnseñanza + ">" + json[i].DesActividadEnseñanza + "</option>"));
+        console.log('json[i].IdActividadEnseñanza= ' + json[i].IdActividadEnseñanza);
+        console.log('json[i].DesActividadEnseñanza= ' + json[i].DesActividadEnseñanza);
+    }
+});
+
 
 $(document).ready(function () {
     if (idA!= null) {
@@ -85,6 +97,13 @@ $(document).ready(function () {
             //alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
         });
         $('#Us').change(function () {
+            u = $(this).val();
+            //alert("You have Selected  :: " + $(this).val());
+            $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            $("#Filtrar").attr("href", "/Planeacion/Planeacion/FicViPlaneacionList?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            //alert("You have Selected :: Asignatura:" + a +" Planeación: "+ p +" Usuario: "+ u);
+        });
+        $('#AE').change(function () {
             u = $(this).val();
             //alert("You have Selected  :: " + $(this).val());
             $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
