@@ -51,8 +51,6 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             var respuestaPost = await client.PostAsync("api/NewFuente/", content);
             if (respuestaPost.IsSuccessStatusCode)
             {
-                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\n2" + respuestaPost.Content);
-
                 return Fuentes;
             }
             return null;

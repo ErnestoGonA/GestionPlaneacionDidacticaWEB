@@ -1,25 +1,20 @@
-﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_subtemas
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_temas_competencias
 
 @{
-    ViewData["Title"] = "FicViSubtemasEdit";
+    ViewData["Title"] = "FicViCompetenciasEdit";
     var idAsignatura = ViewBag.IdPlaneacion;
     var idPlaneacion = ViewBag.IdPlaneacion;
     var idTema = ViewBag.IdTema;
 }
 
-<h2>FicViSubtemasEdit</h2>
+<h2>FicViCompetenciasEdit</h2>
 
-<h4>eva_planeacion_subtemas</h4>
+<h4>eva_planeacion_temas_competencias</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="FicViSubtemasEdit">
+        <form asp-action="FicViCompetenciasEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="IdSubtema" class="control-label"></label>
-                <input asp-for="IdSubtema" class="form-control" />
-                <span asp-validation-for="IdSubtema" class="text-danger"></span>
-            </div>
             <div class="form-group" hidden>
                 <label asp-for="IdAsignatura" class="control-label"></label>
                 <input asp-for="IdAsignatura" class="form-control" />
@@ -35,10 +30,15 @@
                 <input asp-for="IdTema" class="form-control" />
                 <span asp-validation-for="IdTema" class="text-danger"></span>
             </div>
+            <div class="form-group" hidden>
+                <label asp-for="IdCompetencia" class="control-label"></label>
+                <input asp-for="IdCompetencia" class="form-control" />
+                <span asp-validation-for="IdCompetencia" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label asp-for="DesSubtema" class="control-label"></label>
-                <input asp-for="DesSubtema" class="form-control" />
-                <span asp-validation-for="DesSubtema" class="text-danger"></span>
+                <label asp-for="Observaciones" class="control-label"></label>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>
                 <label asp-for="FechaReg" class="control-label"></label>
@@ -78,7 +78,7 @@
 </div>
 
 <div>
-    <a asp-action="FicViSubtemasList" asp-route-IdPlaneacion="@idPlaneacion" asp-route-IdTema="@idTema" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
+    <a asp-action="FicViCompetenciasList" asp-route-IdAsignatura=@idAsignatura asp-route-IdPlaneacion=@idPlaneacion asp-route-IdTema=@idTema>Back to List</a>
 </div>
 
 @section Scripts {

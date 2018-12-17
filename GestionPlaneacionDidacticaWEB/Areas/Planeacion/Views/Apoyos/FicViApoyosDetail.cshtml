@@ -1,17 +1,21 @@
-﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_fuentes
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_apoyos
 
 @{
-    ViewData["Title"] = "FicviFuentesDetail";
-    var idAsignatura = ViewBag.IdPlaneacion;
-    var idPlaneacion = ViewBag.IdPlaneacion;
+    ViewData["Title"] = "FicViApoyosDetail";
 }
 
-<h2>FicviFuentesDetail</h2>
+<h2>FicViApoyosDetail</h2>
 
 <div>
-    <h4>eva_planeacion_fuentes</h4>
+    <h4>eva_planeacion_apoyos</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPlaneacionApoyos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPlaneacionApoyos)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IdAsignatura)
         </dt>
@@ -25,16 +29,10 @@
             @Html.DisplayFor(model => model.IdPlaneacion)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IdFuente)
+            @Html.DisplayNameFor(model => model.IdApoyoDidactico)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IdFuente)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Prioridad)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Prioridad)
+            @Html.DisplayFor(model => model.IdApoyoDidactico)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Observaciones)
@@ -43,16 +41,16 @@
             @Html.DisplayFor(model => model.Observaciones)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UsuarioReg)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UsuarioReg)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.FechaReg)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FechaReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioReg)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FechaUltMod)
@@ -81,5 +79,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="FicViFuentesList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
 </div>
