@@ -88,9 +88,12 @@
                 @Html.DisplayFor(modelItem => item.Borrado)
             </td>*@
             <td>
-                @Html.ActionLink("Edit", "FicViCompetenciasEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia}) |
+                @Html.ActionLink("Edit", "FicViCompetenciasEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia }) |
                 @Html.ActionLink("Details", "FicViCompetenciasDetail", item) |
                 @Html.ActionLink("Delete", "FicViCompetenciasDelete", item, new { onclick = "return confirm('Seguro?');" })
+                @Html.ActionLink("Aprendizaje", "FicViAprendizajesList")
+                @Html.ActionLink("Enseñanza", "FicViEnseñanzasList")
+                @Html.ActionLink("Criterios", "FicViCriteriosList")
             </td>
         </tr>
 }

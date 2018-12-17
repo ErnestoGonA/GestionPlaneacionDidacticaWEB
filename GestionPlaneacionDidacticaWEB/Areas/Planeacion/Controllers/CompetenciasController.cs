@@ -43,6 +43,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         public IActionResult FicViCompetenciasCreate(short asignatura, short planeacion, short tema)
         {
             var Competencia = new eva_planeacion_temas_competencias();
+            ViewBag.IdPlaneacion = planeacion;
+            ViewBag.IdAsignatura = asignatura;
+            ViewBag.IdTema = tema;
             ViewBag.Competencias = new SelectList(new List<SelectListItem>(), "Value", "Text");
             Competencia.IdPlaneacion = planeacion;
             Competencia.IdAsignatura = asignatura;
@@ -126,6 +129,42 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 return RedirectToAction("FicviCompetenciasList", new { competencia.IdPlaneacion, competencia.IdAsignatura , competencia.IdTema});
             }
             return null;
+        }
+
+        public IActionResult FicViAprendizajesList()
+        {
+            try
+            {
+                return null;   
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IActionResult FicViEnseñanzasList()
+        {
+            try
+            {
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IActionResult FicViCriteriossList()
+        {
+            try
+            {
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
