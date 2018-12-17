@@ -65,12 +65,21 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             var respuestaPost = await client.PostAsync("api/competencia", content);
             if (respuestaPost.IsSuccessStatusCode)
             {
-
                 return competencia;
             }
             return null;
         }
 
-
+        public async Task<eva_planeacion_temas_competencias> UpdateCompetencia(eva_planeacion_temas_competencias competencia)
+        {
+            var json = JsonConvert.SerializeObject(competencia);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPut = await client.PutAsync("api/competencia", content);
+            if (respuestaPut.IsSuccessStatusCode)
+            {
+                return competencia;
+            }
+            return null;
+        }
     }
 }

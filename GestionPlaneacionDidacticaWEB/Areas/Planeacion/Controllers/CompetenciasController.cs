@@ -85,5 +85,37 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
+        public IActionResult FicViCompetenciasEdit(short IdAsignatura,int IdPlaneacion, short IdTema, short IdCompetencia)
+        {
+            try
+            {
+                var Competencia = FicSrvCompetencias.GetEvaPlaneacionTemasCompetencia(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia).Result;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdTema = IdTema;
+                ViewBag.IdCompetencia = IdCompetencia;
+                ViewBag.Competencias = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                return View(Competencia);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult FicViCompetenciasEdit(eva_planeacion_temas_competencias FicCompetencia)
+        {
+            try
+            {                 
+                FicSrvCompetencias.UpdateCompetencia(FicCompetencia).Wait();
+                return RedirectToAction("FicViCompetenciasList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema });
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
