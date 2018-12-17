@@ -38,7 +38,7 @@
                     @Html.DisplayFor(modelItem => item.Observaciones)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "FicViApoyosEdit", new { idPlaneacion = (short)item.IdPlaneacion, idAsignatura = item.IdAsignatura, idApoyo = item.IdApoyoDidactico }) |
+                    @Html.ActionLink("Edit", "FicViApoyosEdit", item) |
                     @Html.ActionLink("Details", "FicViApoyosDetail",item) |
                     @Html.ActionLink("Delete", "FicViApoyosDelete", item, new { onclick = "return confirm('¿Seguro?');" })
                 </td>
