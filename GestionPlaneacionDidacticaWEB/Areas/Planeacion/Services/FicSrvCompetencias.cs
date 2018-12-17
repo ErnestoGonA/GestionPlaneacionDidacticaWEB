@@ -34,6 +34,18 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_temas_competencias>();
         }
 
+        public async Task<eva_planeacion_temas_competencias> GetEvaPlaneacionTemasCompetencia(short idAsignatura, int idPlaneacion, short idTema, int idCompetencia)
+        {
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/" + idAsignatura + "/Planeacion/" + idPlaneacion + "/temas/" + idTema + "/competencia/" + idCompetencia);
+            if (FicResponse.IsSuccessStatusCode)
+            {
+                var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<eva_planeacion_temas_competencias>(FicRespuesta);
+            }
+            //return null;
+            return new eva_planeacion_temas_competencias();
+        }
+
         public async Task<eva_planeacion_temas_competencias> GetCompetencia(short idAsignatura, int idPlaneacion, short idTema, int idCompetencia)
         {
             HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/" + idAsignatura + "/Planeacion/" + idPlaneacion + "/temas/" + idTema+"/competencias/"+idCompetencia);

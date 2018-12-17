@@ -69,5 +69,21 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
             return RedirectToAction("FicViCompetenciasList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema });
         }
+
+        public IActionResult FicViCompetenciasDetail(eva_planeacion_temas_competencias item)
+        {
+            try
+            {
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
+                ViewBag.IdAsignatura = item.IdAsignatura;
+                ViewBag.IdTema = item.IdTema;
+                ViewBag.Title = "Detalle Fuente";
+                return View(item);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
