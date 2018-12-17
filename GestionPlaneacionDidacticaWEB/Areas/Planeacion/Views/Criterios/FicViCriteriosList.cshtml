@@ -39,7 +39,7 @@
             <td>
                 @Html.ActionLink("Edit", "FicViCriteriosEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia,item.IdCriterio }) |
                 @Html.ActionLink("Details", "FicViCriteriosDetail", item) |
-                @Html.ActionLink("Delete", "FicViCriteriosDelete", item)
+                @Html.ActionLink("Delete", "FicViCriteriosDelete", item, new { onclick = "return confirm('Seguro?');" })
             </td>
         </tr>
 }
