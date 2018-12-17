@@ -52,7 +52,7 @@ targetDropdow.attr('disabled', false);
 targetDropdow.empty();
 $.get(url, function (json) {
     for (var i = 0; i <= json.length - 1; i++) {
-        targetDropdow.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
+        targetDropdow.append($("<option value=" + json[i].IdApoyoDidactico + ">" + json[i].DesApoyoDidactico + "</option>"));
     }
 });
 

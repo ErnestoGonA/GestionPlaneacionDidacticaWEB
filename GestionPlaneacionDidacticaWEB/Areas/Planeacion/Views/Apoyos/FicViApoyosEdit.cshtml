@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "FicViApoyosEdit";
+    var idAsignatura = ViewBag.IdAsignatura;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>FicViApoyosEdit</h2>
@@ -12,11 +14,6 @@
     <div class="col-md-4">
         <form asp-action="FicViApoyosEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdPlaneacionApoyos" class="control-label"></label>
-                <input asp-for="IdPlaneacionApoyos" class="form-control" />
-                <span asp-validation-for="IdPlaneacionApoyos" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="IdAsignatura" class="control-label"></label>
                 <input asp-for="IdAsignatura" class="form-control" />
@@ -75,7 +72,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViApoyosList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>
 
 @section Scripts {
