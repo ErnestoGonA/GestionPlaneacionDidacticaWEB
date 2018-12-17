@@ -21,10 +21,10 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_apoyos>> FicGetListApoyos(short IdAsignatura, short IdPlaneacion)
+        public async Task<List<eva_planeacion_apoyos>> FicGetListApoyos(short IdPlaneacion, short IdAsignatura)
         {
 
-            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/" + IdAsignatura + "/Planeacion/" + IdPlaneacion + "/Apoyos");
+            HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/" + IdPlaneacion + "/Apoyos/" + IdAsignatura);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
@@ -34,7 +34,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_apoyos>();
         }
 
-        public async Task<eva_planeacion_apoyos> FicGetApoyo(short IdAsignatura, short IdPlaneacion, short IdApoyo)
+        public async Task<eva_planeacion_apoyos> FicGetApoyo(short IdPlaneacion, short IdAsignatura, short IdApoyo)
         {
             HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/" + IdAsignatura + "/Planeacion/" + IdPlaneacion + "/Apoyos/" + IdApoyo);
             if (FicResponse.IsSuccessStatusCode)
@@ -51,7 +51,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
             var json = JsonConvert.SerializeObject(Apoyo);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var respuestaPost = await client.PostAsync("api/Planeacion/Apoyos", content);
+            var respuestaPost = await client.PostAsync("api/NewApoyo/", content);
             if (respuestaPost.IsSuccessStatusCode)
             {
                 return Apoyo;
@@ -66,7 +66,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
             var json = JsonConvert.SerializeObject(Apoyo);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var respuestaPut = await client.PutAsync("api/planeacion/Apoyos", content);
+            var respuestaPut = await client.PutAsync("api/UpdateApoyo/", content);
             if (respuestaPut.IsSuccessStatusCode)
             {
                 return Apoyo;
@@ -74,10 +74,10 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return null;
         }
 
-        public async Task<string> FicApoyosDelete(short IdAsignatura, short IdPlaneacion, short IdApoyo)
+        public async Task<string> FicApoyosDelete(short IdApoyo, short IdAsignatura, short IdPlaneacion)
         {
 
-            var respuestaDelete = await client.DeleteAsync("api/asignatura/" + IdAsignatura + "/planeacion/" + IdPlaneacion + "/Apoyos/" + IdApoyo);
+            var respuestaDelete = await client.DeleteAsync("api/DeleteFuente/" + IdApoyo + "/" + IdAsignatura + "/" + IdPlaneacion);
             if (respuestaDelete.IsSuccessStatusCode)
             {
                 return "OK";

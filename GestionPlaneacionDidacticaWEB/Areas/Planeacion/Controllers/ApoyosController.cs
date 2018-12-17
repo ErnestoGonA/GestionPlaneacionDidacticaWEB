@@ -45,6 +45,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             ViewBag.Apoyos = new SelectList(new List<SelectListItem>(), "Value", "Text");
             Apoyo.IdAsignatura = IdAsignatura;
             Apoyo.IdPlaneacion = IdPlaneacion;
+            ViewBag.IdPlaneacion = IdPlaneacion;
+            ViewBag.IdAsignatura = IdAsignatura;
+            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nFUENTECREATE1" + Apoyo.IdApoyoDidactico + IdAsignatura + IdPlaneacion);
             return View(Apoyo);
         }
 
@@ -52,10 +55,10 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         public ActionResult FicViApoyosCreate(eva_planeacion_apoyos FicApoyo)
         {
             FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
-            Apoyo = FicSrvApoyos.FicGetApoyo((short)FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura, FicApoyo.IdApoyoDidactico).Result;
-
+            Apoyo = FicSrvApoyos.FicGetApoyo(Convert.ToInt16(Request.Form["Apoyos"].ToString()), FicApoyo.IdAsignatura, FicApoyo.IdApoyoDidactico).Result;
             if (Apoyo.IdApoyoDidactico == -1)
             {
+                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYO2" + Apoyo.IdApoyoDidactico + FicApoyo.IdAsignatura + FicApoyo.IdApoyoDidactico);
                 FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
                 FicApoyo.FechaReg = DateTime.Now;
                 FicApoyo.FechaUltMod = DateTime.Now;
@@ -73,8 +76,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                //ViewBag.IdAsignatura = item.IdAsignatura;
-                //ViewBag.IdPlaneacion = item.IdPlaneacion;
+                ViewBag.IdAsignatura = item.IdAsignatura;
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
                 ViewBag.Title = "Detalle Apoyo";
                 return View(item);
             }
@@ -93,6 +96,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 //eva_planeacion_apoyos apoyo = FicSrvApoyos.FicGetApoyo(IdAsignatura, IdPlaneacion, IdApoyo).Result;
                 Apoyo = FicSrvApoyos.FicGetApoyo(IdPlaneacion, IdAsignatura, IdApoyo).Result;
                 ViewBag.Title = "Actualizar Apoyo";
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
                 return View(Apoyo);
             }
             catch (Exception e)
@@ -113,8 +118,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 
             if (apoyo != null)
             {
-                FicSrvApoyos.FicApoyosDelete(apoyo.IdAsignatura, (short)apoyo.IdPlaneacion, apoyo.IdPlaneacionApoyos).Wait();
-                return RedirectToAction("FicViApoyosList", new { apoyo.IdAsignatura, apoyo.IdPlaneacion });
+                FicSrvApoyos.FicApoyosDelete(apoyo.IdApoyoDidactico, apoyo.IdAsignatura, (short)apoyo.IdPlaneacion).Wait();
+                return RedirectToAction("FicViApoyosList", new { apoyo.IdPlaneacion, apoyo.IdAsignatura });
             }
             return null;
         }
