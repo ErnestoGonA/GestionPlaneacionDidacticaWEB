@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "FicviFuentesDetail";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>FicviFuentesDetail</h2>
@@ -79,6 +81,5 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViFuentesList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>

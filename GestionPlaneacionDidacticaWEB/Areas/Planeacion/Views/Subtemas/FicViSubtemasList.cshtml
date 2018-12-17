@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "FicViSubtemasList";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
+    var idTema = ViewBag.IdTema;
 }
 
 <h3>Maestro: Bryan Gutiérrez</h3>
@@ -10,7 +13,7 @@
 <h2>Lista subtemas </h2>
 
 <p>
-    <a asp-action="FicViSubtemasCreate">Create New</a>
+    <a asp-action="FicViSubtemasCreate" asp-route-IdPlaneacion="@idPlaneacion" asp-route-IdTema="@idTema" asp-route-IdAsignatura="@idAsignatura">Create New</a>
 </p>
 <table class="table">
     <thead>

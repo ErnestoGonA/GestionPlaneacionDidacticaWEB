@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "FicViFuentesEdit";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>FicViFuentesEdit</h2>
@@ -75,7 +77,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViFuentesList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>
 
 @section Scripts {
