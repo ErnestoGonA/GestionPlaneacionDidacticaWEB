@@ -45,6 +45,17 @@ $.get(url, function (json) {
     }
 });
 
+var url = "http://localhost:53483/api/Planeacion/NombresApoyosDidacticos";
+var targetDropdow = $("#Apoyos");
+targetDropdow.attr('disabled', false);
+targetDropdow.empty();
+$.get(url, function (json) {
+    for (var i = 0; i <= json.length - 1; i++) {
+        targetDropdow.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
+    }
+});
+
+
 $(document).ready(function () {
     if (idA!= null) {
         $('#Asi').change(function () {
