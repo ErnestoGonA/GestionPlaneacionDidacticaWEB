@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
 using GestionPlaneacionDidacticaWEB.Models;
@@ -22,12 +23,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvApoyos = new FicSrvApoyos();
         }
 
-        public IActionResult FicViApoyosList(eva_planeacion planeacion)
+        public IActionResult FicViApoyosList(short IdPlaneacion, short IdAsignatura)
         {
             try
             {
-                FicListaApoyos = FicSrvApoyos.FicGetListApoyos(planeacion).Result;
-                ViewBag.Title = "Catalogo de apoyos";
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                FicListaApoyos = FicSrvApoyos.FicGetListApoyos((short)IdPlaneacion, IdAsignatura).Result;
+                ViewBag.Title = "Catalogo de Apyos";
                 return View(FicListaApoyos);
             }
             catch (Exception e)
@@ -36,31 +39,42 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViApoyosCreate()
+        public IActionResult FicViApoyosCreate(short IdAsignatura, short IdPlaneacion)
         {
             var Apoyo = new eva_planeacion_apoyos();
-            Apoyo.IdPlaneacion = 1;
-            Apoyo.IdAsignatura = 1;
+            ViewBag.Apoyos = new SelectList(new List<SelectListItem>(), "Value", "Text");
+            Apoyo.IdAsignatura = IdAsignatura;
+            Apoyo.IdPlaneacion = IdPlaneacion;
             return View(Apoyo);
         }
 
         [HttpPost]
         public ActionResult FicViApoyosCreate(eva_planeacion_apoyos FicApoyo)
         {
-            FicApoyo.FechaReg = DateTime.Now;
-            FicApoyo.FechaUltMod = DateTime.Now;
-            FicApoyo.UsuarioReg = "Reyes";
-            FicApoyo.UsuarioUltMod = "Reyes";
-            FicApoyo.Activo = "S";
-            FicApoyo.Borrado = "N";
-            FicSrvApoyos.FicApoyoCreate(FicApoyo).Wait();
-            return RedirectToAction("FicViApoyosList");
+            FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
+            Apoyo = FicSrvApoyos.FicGetApoyo((short)FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura, FicApoyo.IdApoyoDidactico).Result;
+
+            if (Apoyo.IdApoyoDidactico == -1)
+            {
+                FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
+                FicApoyo.FechaReg = DateTime.Now;
+                FicApoyo.FechaUltMod = DateTime.Now;
+                FicApoyo.UsuarioReg = "Reyes";
+                FicApoyo.UsuarioUltMod = "Reyes";
+                FicApoyo.Activo = "S";
+                FicApoyo.Borrado = "N";
+                FicSrvApoyos.FicApoyoCreate(FicApoyo).Wait();
+                return RedirectToAction("FicViApoyosList", new { FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura });
+            }
+            return RedirectToAction("FicViApoyosList", new { FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura });
         }
 
         public IActionResult FicViApoyosDetail(eva_planeacion_apoyos item)
         {
             try
             {
+                //ViewBag.IdAsignatura = item.IdAsignatura;
+                //ViewBag.IdPlaneacion = item.IdPlaneacion;
                 ViewBag.Title = "Detalle Apoyo";
                 return View(item);
             }
@@ -68,6 +82,41 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             {
                 throw e;
             }
+        }
+
+        public IActionResult FicViApoyosEdit(short IdAsignatura, short IdPlaneacion, short IdApoyo)
+        {
+            try
+            {
+                //ViewBag.IdAsignatura = IdAsignatura;
+                //ViewBag.IdPlaneacion = IdPlaneacion;
+                //eva_planeacion_apoyos apoyo = FicSrvApoyos.FicGetApoyo(IdAsignatura, IdPlaneacion, IdApoyo).Result;
+                Apoyo = FicSrvApoyos.FicGetApoyo(IdPlaneacion, IdAsignatura, IdApoyo).Result;
+                ViewBag.Title = "Actualizar Apoyo";
+                return View(Apoyo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult FicViApoyosEdit(eva_planeacion_apoyos Apoyo)
+        {
+            FicSrvApoyos.FicApoyosUpdate(Apoyo).Wait();
+            return RedirectToAction("FicViApoyosList", new { Apoyo.IdAsignatura, Apoyo.IdPlaneacion });
+        }
+
+        public ActionResult FicViApoyosDelete(eva_planeacion_apoyos apoyo)
+        {
+
+            if (apoyo != null)
+            {
+                FicSrvApoyos.FicApoyosDelete(apoyo.IdAsignatura, (short)apoyo.IdPlaneacion, apoyo.IdPlaneacionApoyos).Wait();
+                return RedirectToAction("FicViApoyosList", new { apoyo.IdAsignatura, apoyo.IdPlaneacion });
+            }
+            return null;
         }
 
     }

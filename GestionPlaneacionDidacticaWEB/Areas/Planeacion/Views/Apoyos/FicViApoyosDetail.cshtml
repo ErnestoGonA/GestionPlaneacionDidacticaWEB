@@ -1,0 +1,84 @@
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_apoyos
+
+@{
+    ViewData["Title"] = "FicViApoyosDetail";
+}
+
+<h2>FicViApoyosDetail</h2>
+
+<div>
+    <h4>eva_planeacion_apoyos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPlaneacionApoyos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPlaneacionApoyos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAsignatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAsignatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPlaneacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPlaneacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdApoyoDidactico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdApoyoDidactico)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaUltMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaUltMod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioUltMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioUltMod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Borrado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Borrado)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
