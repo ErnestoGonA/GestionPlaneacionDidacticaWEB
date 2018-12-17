@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "FicViPlaneacionList";
-
 }
 
 <script type="text/javascript">
@@ -13,13 +12,13 @@
 <br />
 <div class="form-group text-center col-sm-12">
     <label class="control-label  col-sm-12">Usuario</label>
-    @Html.DropDownList("Us", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Us", null, null, htmlAttributes: new { @class = "form-control" })
     <br>
     <label class="control-label  col-sm-12">Asignatura</label>
-    @Html.DropDownList("Asi", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Asi", null, null, htmlAttributes: new { @class = "form-control" })
     <br>
     <label class="control-label  col-sm-12">Periodo</label>
-    @Html.DropDownList("Per", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Per", null,null, htmlAttributes: new { @class = "form-control" })
 </div>
 
 <br />
@@ -86,6 +85,7 @@
                         @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
                         @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
                         @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion }) |
+                        @Html.ActionLink("Guardar Como", "FicViGuardarComo",item)
                         @Html.ActionLink("Temas", "FicViTemasList", item) |
                         @Html.ActionLink("Apoyos", "FicViApoyosList", item)
                         @Html.ActionLink("Fuentes", "FicViFuentesList", item)
