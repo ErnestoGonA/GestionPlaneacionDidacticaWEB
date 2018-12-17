@@ -46,27 +46,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         [HttpPost]
         public ActionResult FicViPlaneacionGuardarComo(eva_planeacion planeacion)
         {
-            FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            FicSrvPlaneacion.FicPlaneacionGuardarComo(planeacion,planeacion.IdPlaneacion).Wait();
             return RedirectToAction("FicViPlaneacionList");
         }
-        public IActionResult FicViPlaneacionList()
-        {
-            try
-            {
-                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");
-                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); 
-                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text");
-                FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion(1,1).Result;
-                ViewBag.Title = "Catalogo de planeaciones";
-                return View(FicListaPlaneacion);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
-        public IActionResult FicViPlaneacionListFiltrar(short idAsignatura, short idPeriodo, short usuario)
+        public ActionResult FicViPlaneacionList(short idAsignatura, short idPeriodo, short usuario)
         {
             try
             {
