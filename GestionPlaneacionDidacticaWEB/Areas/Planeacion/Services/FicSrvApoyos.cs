@@ -62,7 +62,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
         public async Task<eva_planeacion_apoyos> FicApoyosUpdate(eva_planeacion_apoyos Apoyo)
         {
             Apoyo.FechaUltMod = DateTime.Now;
-            Apoyo.UsuarioUltMod = "Reyes";
+            Apoyo.FechaReg = DateTime.Now;
+            Apoyo.UsuarioMod = "Reyes";
 
             var json = JsonConvert.SerializeObject(Apoyo);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
