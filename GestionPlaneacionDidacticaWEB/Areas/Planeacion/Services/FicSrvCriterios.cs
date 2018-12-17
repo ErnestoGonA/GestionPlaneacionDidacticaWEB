@@ -33,5 +33,29 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             }
             return new List<eva_planeacion_criterios_evalua>();
         }
+
+        public async Task<eva_planeacion_criterios_evalua> CreateCriterio(eva_planeacion_criterios_evalua Tema)
+        {
+            var json = JsonConvert.SerializeObject(Tema);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPost = await client.PostAsync("api/criterio", content);
+            if (respuestaPost.IsSuccessStatusCode)
+            {
+                return Tema;
+            }
+            return null;
+        }
+
+        public async Task<eva_planeacion_criterios_evalua> PUTCriterio(eva_planeacion_criterios_evalua Tema)
+        {
+            var json = JsonConvert.SerializeObject(Tema);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPost = await client.PutAsync("api/criterio", content);
+            if (respuestaPost.IsSuccessStatusCode)
+            {
+                return Tema;
+            }
+            return null;
+        }
     }
 }

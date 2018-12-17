@@ -23,16 +23,16 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvCriterios = new FicSrvCriterios();
         }
 
-        public IActionResult FicViCriteriosList(short asignatura, int planeacion, short tema, short competencia)
+        public IActionResult FicViCriteriosList(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia)
         {
             try
             {
-                ViewBag.IdAsignatura = asignatura;
-                ViewBag.IdPlaneacion = planeacion;
-                ViewBag.IdTema = tema;
-                ViewBag.IdCompetencia = competencia;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdTema = IdTema;
+                ViewBag.IdCompetencia = IdCompetencia;
 
-                FicListaCriterios = FicSrvCriterios.GetListCriterios(asignatura,planeacion, tema,competencia).Result;
+                FicListaCriterios = FicSrvCriterios.GetListCriterios(IdAsignatura, IdPlaneacion,IdTema ,IdCompetencia).Result;
                 ViewBag.Title = "Catalogo de Criteiros";
                 return View(FicListaCriterios);
 
@@ -43,5 +43,30 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
 
         }
+
+        public IActionResult FicViCriteriosCreate(short asignatura, short planeacion, short tema, short competencia)
+        {
+            Criterio = new eva_planeacion_criterios_evalua();
+            Criterio.IdPlaneacion = planeacion;
+            Criterio.IdAsignatura = asignatura;
+            Criterio.IdTema = tema;
+            Criterio.IdCompetencia = competencia;
+            return View(Criterio);
+        }
+
+        [HttpPost]
+        public ActionResult FicViCriteriosCreate(eva_planeacion_criterios_evalua FicCompetencia)
+        {             
+            
+            FicCompetencia.FechaReg = DateTime.Now;
+            FicCompetencia.FechaUltMod = DateTime.Now;
+            FicCompetencia.UsuarioReg = "Ernesto";
+            FicCompetencia.UsuarioUltMod = "Ernesto";
+            FicCompetencia.Activo = "S";
+            FicCompetencia.Borrado = "N";
+            FicSrvCriterios.CreateCriterio(FicCompetencia).Wait();
+            return RedirectToAction("FicViCriteriosList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema, FicCompetencia.IdCompetencia });
+        }
+
     }
 }
