@@ -47,7 +47,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             Apoyo.IdPlaneacion = IdPlaneacion;
             ViewBag.IdPlaneacion = IdPlaneacion;
             ViewBag.IdAsignatura = IdAsignatura;
-            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nFUENTECREATE1" + Apoyo.IdApoyoDidactico + IdAsignatura + IdPlaneacion);
+            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYOCREATE1" + Apoyo.IdApoyoDidactico + IdAsignatura + IdPlaneacion);
             return View(Apoyo);
         }
 
