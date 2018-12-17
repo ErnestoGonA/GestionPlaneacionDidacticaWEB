@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_temas>
 
     @{
-    ViewData["Title"] = "FicViTemasList";
+        ViewData["Title"] = "FicViTemasList";
+
+        var idAsignatura = ViewBag.IdPlaneacion;
+        var idPlaneacion = ViewBag.IdPlaneacion;
     }
 
     <h2>Maestro: Ernesto González Arellano</h2>
@@ -10,7 +13,7 @@
     <h2>Temas</h2>
 
     <p>
-        <a asp-action="FicViTemasCreate">Crear Tema</a>
+        <a asp-action="FicViTemasCreate" asp-route-IdAsignatura=@idAsignatura asp-route-IdPlaneacion=@idPlaneacion>Crear Tema</a>
     </p>
     <table class="table">
         <thead>
@@ -41,10 +44,11 @@
                     @Html.DisplayFor(modelItem => item.Observaciones)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "FicViTemasEdit", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema }) |
+                    @Html.ActionLink("Edit", "FicViTemasEdit", item) |
                     @Html.ActionLink("Details", "FicViTemasDetail", item) |
                     @Html.ActionLink("Delete", "FicViTemasDelete", item, new { onclick = "return confirm('Seguro?');" }) |
-                    @Html.ActionLink("Subtemas", "FicViSubtemasList", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdAsignatura = item.IdAsignatura })
+                    @Html.ActionLink("Subtemas", "FicViSubtemasList", new { IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdAsignatura = item.IdAsignatura }) |
+                    @Html.ActionLink("Competencias", "FicViCompetenciasList", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema})
                 </td>
             </tr>
 }

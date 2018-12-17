@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_fuentes>
+
+@{
+    ViewData["Title"] = "FicViFuentesList";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
+
+}
+
+<h3>Maestro: Bryan Gutiérrez</h3>
+<h3>Materia: Desarrollo de aplicaciones empresariales</h3>
+
+<h2>Lista fuentes</h2>
+
+<p>
+    <a asp-action="FicViFuentesCreate" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prioridad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prioridad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observaciones)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "FicViFuentesEdit", new { idPlaneacion = (short)item.IdPlaneacion, idAsignatura = item.IdAsignatura, idFuente = item.IdFuente }) |
+                    @Html.ActionLink("Details", "FicViFuentesDetail", item) |
+                    @Html.ActionLink("Delete", "FicViFuentesDelete", item, new { onclick = "return confirm('¿Seguro?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
