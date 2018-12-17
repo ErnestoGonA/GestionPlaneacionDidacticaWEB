@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "FicViApoyosDetail";
+    var idAsignatura = ViewBag.IdAsignatura;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>FicViApoyosDetail</h2>
@@ -10,12 +12,6 @@
     <h4>eva_planeacion_apoyos</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdPlaneacionApoyos)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdPlaneacionApoyos)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IdAsignatura)
         </dt>
@@ -80,5 +76,5 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViApoyosList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>

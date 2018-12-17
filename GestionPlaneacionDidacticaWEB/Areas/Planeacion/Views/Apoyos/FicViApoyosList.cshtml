@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "FicViApoyosList";
-    var idAsignatura = ViewBag.IdPlaneacion;
+    var idAsignatura = ViewBag.IdAsignatura;
     var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
@@ -13,14 +13,11 @@
 <h2>Lista de Apoyos</h2>
 
 <p>
-    <a asp-action="Create" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion>Create New</a>
+    <a asp-action="FicViApoyosCreate" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion>Create Apoyo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPlaneacionApoyos)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdApoyoDidactico)
             </th>
@@ -34,9 +31,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdPlaneacionApoyos)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IdApoyoDidactico)
                 </td>
