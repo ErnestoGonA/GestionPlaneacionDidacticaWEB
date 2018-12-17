@@ -125,13 +125,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             try
             {
                 return RedirectToAction("FicViApoyosList", "Apoyos", new { planeacion.IdPlaneacion,planeacion.IdAsignatura});
+
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
-                
+        
         public IActionResult FicViFuentesList(eva_planeacion planeacion)
         {
             try

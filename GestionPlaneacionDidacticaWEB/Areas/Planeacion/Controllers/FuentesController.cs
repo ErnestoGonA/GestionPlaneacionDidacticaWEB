@@ -24,13 +24,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
 
-        public IActionResult FicViFuentesList(int IdPlaneacion, short IdAsignatura)
+        public IActionResult FicViFuentesList(short IdPlaneacion, short IdAsignatura)
         {
             try
             {
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
-                FicListaFuentes = FicSrvFuentes.FicGetListFuentes((short)IdPlaneacion,IdAsignatura).Result;
+                FicListaFuentes = FicSrvFuentes.FicGetListFuentes(IdPlaneacion,IdAsignatura).Result;
                 ViewBag.Title = "Catalogo de Fuentes";
                 return View(FicListaFuentes);
             }
@@ -46,6 +46,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             ViewBag.Fuentes = new SelectList(new List<SelectListItem>(), "Value", "Text");
             Fuente.IdPlaneacion = planeacion;
             Fuente.IdAsignatura = asignatura;
+            ViewBag.IdPlaneacion = planeacion;
+            ViewBag.IdAsignatura = asignatura;
+            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nFUENTECREATE1" + Fuente.IdFuente + asignatura + planeacion);
             return View(Fuente);
         }
 
@@ -53,8 +56,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         public ActionResult FicViFuentesCreate(eva_planeacion_fuentes FicFuente)
         {
            FicFuente.IdFuente = Convert.ToInt16(Request.Form["Fuentes"].ToString());
-           Fuente = FicSrvFuentes.FicGetFuente((short)FicFuente.IdPlaneacion, FicFuente.IdAsignatura, FicFuente.IdFuente).Result;
+           Fuente = FicSrvFuentes.FicGetFuente(Convert.ToInt16(Request.Form["Fuentes"].ToString()), FicFuente.IdAsignatura, FicFuente.IdFuente).Result;
             if (Fuente.IdFuente == -1) {
+                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nFUENTE2" + Fuente.IdFuente + FicFuente.IdAsignatura +  FicFuente.IdFuente);
                 FicFuente.IdFuente = Convert.ToInt16(Request.Form["Fuentes"].ToString());
                 FicFuente.FechaReg = DateTime.Now;
                 FicFuente.FechaUltMod = DateTime.Now;
@@ -72,6 +76,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
+                ViewBag.IdAsignatura = item.IdAsignatura;
                 ViewBag.Title = "Detalle Fuente";
                 return View(item);
             }
@@ -87,6 +93,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             {
                 Fuente = FicSrvFuentes.FicGetFuente(idPlaneacion, idAsignatura, idFuente).Result;
                 ViewBag.Title = "Actualizar Fuente";
+                ViewBag.IdPlaneacion = idPlaneacion;
+                ViewBag.IdAsignatura = idAsignatura;
                 return View(Fuente);
             }
             catch (Exception e)

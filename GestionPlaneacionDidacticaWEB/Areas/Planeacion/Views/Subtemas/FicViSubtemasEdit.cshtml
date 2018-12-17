@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "FicViSubtemasEdit";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
+    var idTema = ViewBag.IdTema;
 }
 
 <h2>FicViSubtemasEdit</h2>
@@ -75,7 +78,7 @@
 </div>
 
 <div>
-    <a asp-action="FicViSubtemasList" asp-route-IdPlaneacion="IdPlaneacion" asp-route-IdTema="IdTema" asp-route-IdAsignatura="IdAsignatura">Back to List</a>
+    <a asp-action="FicViSubtemasList" asp-route-IdPlaneacion="@idPlaneacion" asp-route-IdTema="@idTema" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>
 
 @section Scripts {
