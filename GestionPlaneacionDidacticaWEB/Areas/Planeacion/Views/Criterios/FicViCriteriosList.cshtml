@@ -2,54 +2,26 @@
 
 @{
     ViewData["Title"] = "FicViCriteriosList";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
+    var idTema = ViewBag.IdTema;
+    var idCompetencia = ViewBag.IdCompetencia;
 }
 
 <h2>FicViCriteriosList</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion asp-route-tema=@idTema asp-route-competencia=@idCompetencia>Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCriterio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdAsignatura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdTema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPlaneacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCompetencia)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.DesCriterio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Porcentaje)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaReg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioReg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaUltMod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioUltMod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Borrado)
             </th>
             <th></th>
         </tr>
@@ -57,21 +29,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCriterio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAsignatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdTema)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPlaneacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCompetencia)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.DesCriterio)
             </td>
@@ -79,27 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Porcentaje)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaReg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioReg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaUltMod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioUltMod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Borrado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia }) |
+                @Html.ActionLink("Details", "Details", item) |
+                @Html.ActionLink("Delete", "Delete", item)
             </td>
         </tr>
 }

@@ -132,11 +132,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViPlaneacionList");
         }
 
-        public IActionResult FicViTemasList(eva_planeacion planeacion)
+        public IActionResult FicViTemasList(short IdAsignatura, int IdPlaneacion)
         {
             try
             {
-                return RedirectToAction("FicViTemasList", "Temas", new { planeacion.IdAsignatura,planeacion.IdPlaneacion});
+                return RedirectToAction("FicViTemasList", "Temas", new { IdAsignatura,IdPlaneacion});
             }
             catch (Exception e)
             {
