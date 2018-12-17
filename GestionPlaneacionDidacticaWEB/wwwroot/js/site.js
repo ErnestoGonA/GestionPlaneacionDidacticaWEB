@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-var a = 1, p = 1, u = 1;
+var a = 1, p = 1, u = 1, c=1;
 
 var url = "http://localhost:53483/api/Planeacion/Asignaturas";
 var targetDropdown = $("#Asi");
@@ -45,6 +45,7 @@ $.get(url, function (json) {
     }
 });
 
+
 var url = "http://localhost:53483/api/Planeacion/NombresApoyosDidacticos";
 var targetDropdow = $("#Apoyos");
 targetDropdow.attr('disabled', false);
@@ -52,6 +53,17 @@ targetDropdow.empty();
 $.get(url, function (json) {
     for (var i = 0; i <= json.length - 1; i++) {
         targetDropdow.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
+    }
+});
+
+
+var url = "http://localhost:53483/api/CatCompetencias";
+var targetDropdowC = $("#Competencias");
+targetDropdowC.attr('disabled', false);
+targetDropdowC.empty();
+$.get(url, function (json) {
+    for (var i = 0; i <= json.length - 1; i++) {
+        targetDropdowC.append($("<option value=" + json[i].IdCompetencia + ">" + json[i].DesCompetencia + "</option>"));
     }
 });
 
