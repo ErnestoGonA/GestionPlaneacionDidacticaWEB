@@ -49,7 +49,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
 
             var json = JsonConvert.SerializeObject(planeacion);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var respuestaPost = await client.PostAsync("api/Planeaciones/NewPlaneacion/", content);
+            var respuestaPost = await client.PostAsync("api/Planeaciones/GuardarComo/" + idPlaneacion, content);
             FicSrvApoyos apoyosService = new FicSrvApoyos();
             if (respuestaPost.IsSuccessStatusCode)
             {
