@@ -31,9 +31,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");;
-                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
-                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text"); ;
+                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); 
+                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text");
                 FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion().Result;
                 ViewBag.Title = "Catalogo de planeaciones";
                 return View(FicListaPlaneacion);
@@ -44,13 +44,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViPlaneacionCreate()
+        public IActionResult FicViPlaneacionCreate(short idAsignatura, short idPeriodo, short usuario)
         {
             var planeacion = new eva_planeacion();
+            planeacion.UsuarioReg = usuario+"";
             planeacion.IdPlaneacion = 1;
-            planeacion.IdAsignatura = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
-            planeacion.IdPeriodo = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
-
+            planeacion.IdAsignatura = idAsignatura;//Convert.ToInt16(Request.Form["Asi"].ToString());
+            planeacion.IdPeriodo = idPeriodo;//Convert.ToInt16(Request.Form["Asi"].ToString());
+            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nDIME" + planeacion.IdAsignatura + planeacion.IdPeriodo);
             return View(planeacion);
         }
 
@@ -63,9 +64,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             planeacion.UsuarioMod = "PEDRO";
             planeacion.Activo = "S";
             planeacion.Borrado = "N";
-            planeacion.IdPlaneacion = 4;
-            planeacion.IdAsignatura = 1;
-            planeacion.IdPeriodo = 1;
+            planeacion.IdPlaneacion = 5;
             FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
             return RedirectToAction("FicViPlaneacionList");
         }
@@ -112,7 +111,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
-                return RedirectToAction("FicViTemasList", "Temas", planeacion);
+                return RedirectToAction("FicViTemasList", "Temas", new { planeacion.IdAsignatura,planeacion.IdPlaneacion});
             }
             catch (Exception e)
             {
@@ -120,11 +119,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
+
         public IActionResult FicViApoyosList(eva_planeacion planeacion)
         {
             try
             {
                 return RedirectToAction("FicViApoyosList", "Apoyos", planeacion);
+                
+        public IActionResult FicViFuentesList(eva_planeacion planeacion)
+        {
+            try
+            {
+                return RedirectToAction("FicViFuentesList", "Fuentes", new { planeacion.IdPlaneacion, planeacion.IdAsignatura });
+
             }
             catch (Exception e)
             {
