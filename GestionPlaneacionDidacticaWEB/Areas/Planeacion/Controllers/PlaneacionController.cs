@@ -119,5 +119,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
+        public IActionResult FicViApoyosList(eva_planeacion planeacion)
+        {
+            try
+            {
+                return RedirectToAction("FicViApoyosList", "Apoyos", planeacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
