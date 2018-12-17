@@ -20,9 +20,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
         }
 
         //List All 
-        public async Task<List<extended_eva_planeacion_enseñanza>> FicGetListPlaneacionEnseñanza()
+        public async Task<List<extended_eva_planeacion_enseñanza>> FicGetListPlaneacionEnseñanza(short IdAsignatura, int IdPlaneacion, short IdTema, int IdCompetencia)
         {
-            HttpResponseMessage FicResponse = await this.FiClient.GetAsync("http://localhost:53483/api/PlaneacionEnseñanzaExtended");
+            HttpResponseMessage FicResponse = await this.FiClient.GetAsync("http://localhost:53483/api/PlaneacionEnseñanzaExtended/" + IdAsignatura + "/" + IdPlaneacion + "/" + IdTema + "/" + IdCompetencia);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();

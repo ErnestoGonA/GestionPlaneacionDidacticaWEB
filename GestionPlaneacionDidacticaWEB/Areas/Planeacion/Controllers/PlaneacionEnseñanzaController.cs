@@ -22,12 +22,12 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
         //Lista -------------------------------------------
-        public IActionResult FicViPlaneacionEnseñanzaList()
+        public IActionResult FicViPlaneacionEnseñanzaList(short IdAsignatura, int IdPlaneacion, short IdTema, int IdCompetencia)
         {
             try
             {
 
-                FicListaEPE = FicService.FicGetListPlaneacionEnseñanza().Result;
+                FicListaEPE = FicService.FicGetListPlaneacionEnseñanza(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia).Result;
                 ViewBag.Title = "Catalogo de alumnos";
                 return View(FicListaEPE);
             }
