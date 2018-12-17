@@ -2,12 +2,15 @@
 
 @{
     ViewData["Title"] = "FicViCompetenciasList";
+    var idAsignatura = ViewBag.IdPlaneacion;
+    var idPlaneacion = ViewBag.IdPlaneacion;
+    var idTema = ViewBag.IdTema;
 }
 
 <h2>FicViCompetenciasList</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="FicViCompetenciasCreate" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion asp-route-tema=@idTema>Create New</a>
 </p>
 <table class="table">
     <thead>
