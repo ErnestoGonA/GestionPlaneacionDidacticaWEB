@@ -22,10 +22,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
 
-        public IActionResult FicViSubtemasList(int IdPlaneacion, short IdTema, short IdAsignatura)
+        public IActionResult FicViSubtemasList(short IdPlaneacion, short IdTema, short IdAsignatura)
         {
             try
             {
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdTema = IdTema;
                 FicListaSubtemas = FicSrvSubtemas.FicGetListSubtemas(IdPlaneacion, IdTema,IdAsignatura).Result;
                 ViewBag.Title = "Catalogo de Subtemas";
                 return View(FicListaSubtemas);
@@ -36,12 +39,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
      
-        public IActionResult FicViSubtemasCreate()
+        public IActionResult FicViSubtemasCreate(short IdPlaneacion, short IdTema, short IdAsignatura)
         {
             var subtema = new eva_planeacion_subtemas();
-            subtema.IdPlaneacion = 1;
-            subtema.IdAsignatura = 1;
-            subtema.IdTema = 1;
+            subtema.IdPlaneacion = IdPlaneacion;
+            subtema.IdAsignatura = IdAsignatura;
+            subtema.IdTema = IdTema;
+            ViewBag.IdPlaneacion = subtema.IdPlaneacion;
+            ViewBag.IdAsignatura = subtema.IdAsignatura;
+            ViewBag.IdTema = subtema.IdTema;
             return View(subtema);
         }
 
@@ -62,6 +68,9 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
+                ViewBag.IdAsignatura = item.IdAsignatura;
+                ViewBag.IdTema = item.IdTema;
                 ViewBag.Title = "Detalle Subtema";
                 return View(item);
             }
@@ -71,11 +80,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViSubtemasEdit(int IdPlaneacion, short IdTema,short IdSubtema, short IdAsignatura)
+        public IActionResult FicViSubtemasEdit(short IdPlaneacion, short IdTema,short IdSubtema, short IdAsignatura)
         {
             try
             {
-                Subtemas = FicSrvSubtemas.FicGetSubtema((short)IdPlaneacion, IdTema,IdAsignatura,IdSubtema).Result;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdTema = IdTema;
+                Subtemas = FicSrvSubtemas.FicGetSubtema(IdPlaneacion, IdTema,IdAsignatura,IdSubtema).Result;
                 ViewBag.Title = "Actualizar Subtema";
                 return View(Subtemas);
             }
