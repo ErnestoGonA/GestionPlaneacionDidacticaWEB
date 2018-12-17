@@ -155,11 +155,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViCriteriossList()
+        public IActionResult FicViCriteriosList(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia)
         {
             try
             {
-                return null;
+                return RedirectToAction("FicViCriteriosList", "Criterios", new { IdAsignatura, IdPlaneacion, IdTema ,IdCompetencia});
             }
             catch (Exception e)
             {
