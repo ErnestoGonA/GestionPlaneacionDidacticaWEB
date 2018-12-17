@@ -56,7 +56,24 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");
                 ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text"); 
                 ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text");
-                FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion().Result;
+                FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion(1,1).Result;
+                ViewBag.Title = "Catalogo de planeaciones";
+                return View(FicListaPlaneacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IActionResult FicViPlaneacionListFiltrar(short idAsignatura, short idPeriodo, short usuario)
+        {
+            try
+            {
+                ViewBag.Asi = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Us = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                FicListaPlaneacion = FicSrvPlaneacion.FicGetListPlaneacion(idAsignatura, idPeriodo).Result;
                 ViewBag.Title = "Catalogo de planeaciones";
                 return View(FicListaPlaneacion);
             }

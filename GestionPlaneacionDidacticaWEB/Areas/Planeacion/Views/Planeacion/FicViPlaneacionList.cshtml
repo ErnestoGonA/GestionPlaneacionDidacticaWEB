@@ -27,7 +27,10 @@
     <h2 class="form-group text-center col-sm-12">Lista de Planeaciones</h2>
 
     <p class=" btn btn-warning text-left col-sm-2 ">
-        <a id="Create"class="text-light" asp-action="FicViPlaneacionCreate" asp-route-idAsignatura="1" asp-route-idPeriodo="1" asp-route-usuario="1">Create New</a>
+        <a id="Create" class="text-light" asp-action="FicViPlaneacionCreate" asp-route-idAsignatura="1" asp-route-idPeriodo="1" asp-route-usuario="1">Create New</a>
+    </p>
+    <p class=" btn btn-warning text-left col-sm-2 ">
+        <a id="Create" class="text-light" asp-action="FicViPlaneacionListFiltrar" asp-route-idAsignatura="1" asp-route-idPeriodo="1" asp-route-usuario="1">Filtrar</a>
     </p>
     <table class="table">
         <thead>
@@ -85,7 +88,7 @@
                         @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
                         @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
                         @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion }) |
-                        @Html.ActionLink("Guardar Como", "FicViGuardarComo",item)
+                        @Html.ActionLink("Guardar Como", "FicViGuardarComo", item)
                         @Html.ActionLink("Temas", "FicViTemasList", item) |
                         @Html.ActionLink("Apoyos", "FicViApoyosList", item)
                         @Html.ActionLink("Fuentes", "FicViFuentesList", item)
