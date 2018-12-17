@@ -39,36 +39,33 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViApoyosCreate(short IdAsignatura, short IdPlaneacion)
+        public IActionResult FicViApoyosCreate(short asignatura, short planeacion)
         {
             var Apoyo = new eva_planeacion_apoyos();
             ViewBag.Apoyos = new SelectList(new List<SelectListItem>(), "Value", "Text");
-            Apoyo.IdAsignatura = IdAsignatura;
-            Apoyo.IdPlaneacion = IdPlaneacion;
-            ViewBag.IdPlaneacion = IdPlaneacion;
-            ViewBag.IdAsignatura = IdAsignatura;
-            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYOCREATE1" + Apoyo.IdApoyoDidactico + IdAsignatura + IdPlaneacion);
+            Apoyo.IdAsignatura = asignatura;
+            Apoyo.IdPlaneacion = planeacion;
+            ViewBag.IdPlaneacion = planeacion;
+            ViewBag.IdAsignatura = asignatura;
+            System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYOCREATE1" + Apoyo.IdApoyoDidactico + asignatura + planeacion);
             return View(Apoyo);
         }
 
         [HttpPost]
         public ActionResult FicViApoyosCreate(eva_planeacion_apoyos FicApoyo)
         {
+            //FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
+            //Apoyo = FicSrvApoyos.FicGetApoyo(Convert.ToInt16(Request.Form["Apoyos"].ToString()), FicApoyo.IdAsignatura, FicApoyo.IdApoyoDidactico).Result;
+            //if (Apoyo.IdApoyoDidactico == -1)
+            //System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYO2" + Apoyo.IdApoyoDidactico + FicApoyo.IdAsignatura + FicApoyo.IdApoyoDidactico);
             FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
-            Apoyo = FicSrvApoyos.FicGetApoyo(Convert.ToInt16(Request.Form["Apoyos"].ToString()), FicApoyo.IdAsignatura, FicApoyo.IdApoyoDidactico).Result;
-            if (Apoyo.IdApoyoDidactico == -1)
-            {
-                System.Diagnostics.Debug.WriteLine("\n\n\n\n\n\n\n\n\n\n\nAPOYO2" + Apoyo.IdApoyoDidactico + FicApoyo.IdAsignatura + FicApoyo.IdApoyoDidactico);
-                FicApoyo.IdApoyoDidactico = Convert.ToInt16(Request.Form["Apoyos"].ToString());
-                FicApoyo.FechaReg = DateTime.Now;
-                FicApoyo.FechaUltMod = DateTime.Now;
-                FicApoyo.UsuarioReg = "Reyes";
-                FicApoyo.UsuarioUltMod = "Reyes";
-                FicApoyo.Activo = "S";
-                FicApoyo.Borrado = "N";
-                FicSrvApoyos.FicApoyoCreate(FicApoyo).Wait();
-                return RedirectToAction("FicViApoyosList", new { FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura });
-            }
+            FicApoyo.FechaReg = DateTime.Now;
+            FicApoyo.FechaUltMod = DateTime.Now;
+            FicApoyo.UsuarioReg = "Reyes";
+            FicApoyo.UsuarioUltMod = "Reyes";
+            FicApoyo.Activo = "S";
+            FicApoyo.Borrado = "N";
+            FicSrvApoyos.FicApoyoCreate(FicApoyo).Wait();
             return RedirectToAction("FicViApoyosList", new { FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura });
         }
 
