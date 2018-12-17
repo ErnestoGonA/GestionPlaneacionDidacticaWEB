@@ -74,19 +74,22 @@ $(document).ready(function () {
             a = $(this).val();
             //alert("You have Selected  :: " + $(this).val());
             $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
-            alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
+            $("#Filtrar").attr("href", "/Planeacion/Planeacion/FicViPlaneacionList?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            //alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
         });
         $('#Per').change(function () {
             p = $(this).val();
             //alert("You have Selected  :: " + $(this).val());
             $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
-            alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
+            $("#Filtrar").attr("href", "/Planeacion/Planeacion/FicViPlaneacionList?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            //alert("You have Selected :: Asignatura:" + a + " Planeación: " + p + " Usuario: " + u);
         });
         $('#Us').change(function () {
             u = $(this).val();
             //alert("You have Selected  :: " + $(this).val());
             $("#Create").attr("href", "/Planeacion/Planeacion/FicViPlaneacionCreate?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
-            alert("You have Selected :: Asignatura:" + a +" Planeación: "+ p +" Usuario: "+ u);
+            $("#Filtrar").attr("href", "/Planeacion/Planeacion/FicViPlaneacionList?idAsignatura=" + a + "&idPeriodo=" + p + "&usuario=" + u);
+            //alert("You have Selected :: Asignatura:" + a +" Planeación: "+ p +" Usuario: "+ u);
         });
     }
 });
