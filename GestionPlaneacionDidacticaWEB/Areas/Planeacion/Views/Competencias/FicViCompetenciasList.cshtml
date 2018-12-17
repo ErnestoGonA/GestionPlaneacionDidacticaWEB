@@ -15,7 +15,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.IdAsignatura)
             </th>
             <th>
@@ -26,11 +26,11 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdCompetencia)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Observaciones)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FechaReg)
             </th>
             <th>
@@ -47,14 +47,14 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Borrado)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdAsignatura)
             </td>
             <td>
@@ -65,11 +65,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdCompetencia)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Observaciones)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.FechaReg)
             </td>
             <td>
@@ -86,11 +86,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Borrado)
-            </td>
+            </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "FicViCompetenciasEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia}) |
+                @Html.ActionLink("Details", "FicViCompetenciasDetail", item) |
+                @Html.ActionLink("Delete", "FicViCompetenciasDelete", item, new { onclick = "return confirm('Seguro?');" })
             </td>
         </tr>
 }
