@@ -68,5 +68,60 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViCriteriosList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema, FicCompetencia.IdCompetencia });
         }
 
+        public IActionResult FicViCriteriosDetail(eva_planeacion_criterios_evalua item)
+        {
+            try
+            {
+                ViewBag.IdAsignatura = item.IdAsignatura;
+                ViewBag.IdPlaneacion = item.IdPlaneacion;
+                ViewBag.IdTema = item.IdTema;
+                ViewBag.IdCompetencia = item.IdCompetencia;
+                ViewBag.Title = "Detalle Tema";
+                return View(item);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IActionResult FicViCriteriosEdit(short IdAsignatura, int IdPlaneacion, short IdTema,short IdCompetencia, short IdCriterio)
+        {
+            try
+            {
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdTema = IdTema;
+                ViewBag.IdCompetencia = IdCompetencia;
+                eva_planeacion_criterios_evalua tema = FicSrvCriterios.GetCriterio(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia, IdCriterio).Result;
+                ViewBag.Title = "Actualizar criterio";
+                return View(tema);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult FicViCriteriosEdit(eva_planeacion_criterios_evalua Tema)
+        {
+            FicSrvCriterios.PUTCriterio(Tema).Wait();
+            return RedirectToAction("FicViCriteriosList", new { Tema.IdAsignatura, Tema.IdPlaneacion,Tema.IdTema, Tema.IdCompetencia });
+        }
+
+
+
+        public ActionResult FicViCriteriosDelete(eva_planeacion_criterios_evalua tema)
+        {
+
+            if (tema != null)
+            {
+                FicSrvCriterios.DeleteCriterio(tema).Wait();
+                return RedirectToAction("FicViCriteriosList", new { tema.IdAsignatura, tema.IdPlaneacion,tema.IdTema, tema.IdCompetencia });
+            }
+            return null;
+        }
+
     }
 }

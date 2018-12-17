@@ -34,6 +34,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             return new List<eva_planeacion_criterios_evalua>();
         }
 
+        public async Task<eva_planeacion_criterios_evalua> GetCriterio(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia,short IdCriterio)
+        {
+            HttpResponseMessage FicResponse =
+                await this.client
+                .GetAsync("api/Asignatura/" + IdAsignatura + "/Planeacion/" + IdPlaneacion + "/Temas/" + IdTema + "/Competencias/" + IdCompetencia + "/criterios/"+IdCriterio);
+            if (FicResponse.IsSuccessStatusCode)
+            {
+                var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<eva_planeacion_criterios_evalua>(FicRespuesta);
+            }
+            return new eva_planeacion_criterios_evalua();
+        }
+
         public async Task<eva_planeacion_criterios_evalua> CreateCriterio(eva_planeacion_criterios_evalua Tema)
         {
             var json = JsonConvert.SerializeObject(Tema);
@@ -44,6 +57,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
                 return Tema;
             }
             return null;
+        }
+
+        public async Task<string> DeleteCriterio(eva_planeacion_criterios_evalua criterio)
+        {
+
+            var respuestaDelete = await client.DeleteAsync("api/asignatura/" + criterio.IdAsignatura + "/planeacion/" + criterio.IdPlaneacion + "/Temas/" + criterio.IdTema+"/competencias/"+ criterio.IdCompetencia+"/criterios/"+ criterio.IdCriterio);
+            if (respuestaDelete.IsSuccessStatusCode)
+            {
+                return "OK";
+            }
+            return "ERROR";
         }
 
         public async Task<eva_planeacion_criterios_evalua> PUTCriterio(eva_planeacion_criterios_evalua Tema)
