@@ -36,12 +36,12 @@ targetDropdown1.append($("<option value=5> Ana </option>"));
 
 
 var url = "http://localhost:53483/api/Planeacion/NombresFuentes";
-var targetDropdow = $("#Fuentes");
-targetDropdow.attr('disabled', false);
-targetDropdow.empty();
+var targetDropdowF = $("#Fuentes");
+targetDropdowF.attr('disabled', false);
+targetDropdowF.empty();
 $.get(url, function (json) {
     for (var i = 0; i <= json.length - 1; i++) {
-        targetDropdow.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
+        targetDropdowF.append($("<option value=" + json[i].IdFuente + ">" + json[i].DesFuenteCompleta + "</option>"));
     }
 });
 
