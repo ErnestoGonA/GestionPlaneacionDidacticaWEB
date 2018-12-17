@@ -1,0 +1,117 @@
+﻿@model GestionPlaneacionDidacticaWEB.Models.extended_eva_planeacion_enseñanza
+
+<h2>FicViPlaneacionEnseñanzaUpdate</h2>
+
+<h4>eva_planeacion_enseñanza</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FicViPlaneacionEnseñanzaUpdate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdAsignatura" class="control-label"></label>
+                <input asp-for="IdAsignatura" class="form-control" readonly />
+                <span asp-validation-for="IdAsignatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesAsignatura" class="control-label"></label>
+                <input asp-for="DesAsignatura" class="form-control" readonly />
+                <span asp-validation-for="DesAsignatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPlaneacion" class="control-label"></label>
+                <input asp-for="IdPlaneacion" class="form-control" readonly />
+                <span asp-validation-for="IdPlaneacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferenciaNorma" class="control-label"></label>
+                <input asp-for="ReferenciaNorma" class="form-control" readonly />
+                <span asp-validation-for="ReferenciaNorma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdTema" class="control-label"></label>
+                <input asp-for="IdTema" class="form-control" readonly />
+                <span asp-validation-for="IdTema" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesTema" class="control-label"></label>
+                <input asp-for="DesTema" class="form-control" readonly />
+                <span asp-validation-for="DesTema" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCompetencia" class="control-label"></label>
+                <input asp-for="IdCompetencia" class="form-control" readonly />
+                <span asp-validation-for="IdCompetencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesCompetencia" class="control-label"></label>
+                <input asp-for="DesCompetencia" class="form-control" readonly />
+                <span asp-validation-for="DesCompetencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdActividadEnseñanza" class="control-label"></label>
+                <input asp-for="IdActividadEnseñanza" class="form-control" readonly/>
+                <span asp-validation-for="IdActividadEnseñanza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesActividadEnseñanza" class="control-label"></label>
+                <input asp-for="DesActividadEnseñanza" class="form-control" readonly/>
+                <span asp-validation-for="DesActividadEnseñanza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaProgramada" class="control-label"></label>
+                <input asp-for="FechaProgramada" class="form-control" />
+                <span asp-validation-for="FechaProgramada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaRealizada" class="control-label"></label>
+                <input asp-for="FechaRealizada" class="form-control" />
+                <span asp-validation-for="FechaRealizada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaReg" class="control-label"></label>
+                <input asp-for="FechaReg" class="form-control" readonly />
+                <span asp-validation-for="FechaReg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioReg" class="control-label"></label>
+                <input asp-for="UsuarioReg" class="form-control" readonly />
+                <span asp-validation-for="UsuarioReg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaUltMod" class="control-label"></label>
+                <input asp-for="FechaUltMod" class="form-control" readonly />
+                <span asp-validation-for="FechaUltMod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioMod" class="control-label"></label>
+                <input asp-for="UsuarioMod" class="form-control" readonly />
+                <span asp-validation-for="UsuarioMod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioMod" class="control-label"></label>
+                <input asp-for="UsuarioMod" class="form-control" readonly />
+                <span asp-validation-for="UsuarioMod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Activo" class="control-label"></label>
+                <input asp-for="Activo" class="form-control" readonly />
+                <span asp-validation-for="Activo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Borrado" class="control-label"></label>
+                <input asp-for="Borrado" class="form-control" readonly />
+                <span asp-validation-for="Borrado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

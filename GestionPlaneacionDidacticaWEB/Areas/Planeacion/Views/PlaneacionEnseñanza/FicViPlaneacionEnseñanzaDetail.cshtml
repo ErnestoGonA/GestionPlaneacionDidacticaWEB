@@ -1,0 +1,121 @@
+﻿@model GestionPlaneacionDidacticaWEB.Models.extended_eva_planeacion_enseñanza
+
+@{
+    ViewData["Title"] = "FicViPlaneacionEnseñanzaDetail";
+}
+
+<h2>FicViPlaneacionEnseñanzaDetail</h2>
+
+<div>
+    <h4>eva_planeacion_enseñanza</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAsignatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAsignatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesAsignatura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesAsignatura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPlaneacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPlaneacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenciaNorma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenciaNorma)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdTema)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesTema)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesTema)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCompetencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdCompetencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesCompetencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesCompetencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdActividadEnseñanza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdActividadEnseñanza)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesActividadEnseñanza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesActividadEnseñanza)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaProgramada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaProgramada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRealizada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaRealizada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioReg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioReg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaUltMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaUltMod)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Borrado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Borrado)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
