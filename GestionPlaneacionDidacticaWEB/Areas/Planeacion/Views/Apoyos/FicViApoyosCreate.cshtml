@@ -2,9 +2,13 @@
 
 @{
     ViewData["Title"] = "FicViApoyosCreate";
+    var idAsignatura = ViewBag.IdAsignatura;
+    var idPlaneacion = ViewBag.IdPlaneacion;
 }
 
 <h2>FicViApoyosCreate</h2>
+<h2>Planeacion: @idPlaneacion</h2>
+<h2>Planeacion: @idAsignatura</h2>
 
 <h4>eva_planeacion_apoyos</h4>
 <hr />
@@ -12,11 +16,6 @@
     <div class="col-md-4">
         <form asp-action="FicViApoyosCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdPlaneacionApoyos" class="control-label"></label>
-                <input asp-for="IdPlaneacionApoyos" class="form-control" />
-                <span asp-validation-for="IdPlaneacionApoyos" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="IdAsignatura" class="control-label"></label>
                 <input asp-for="IdAsignatura" class="form-control" />
@@ -36,7 +35,7 @@
                 <input asp-for="Observaciones" class="form-control" />
                 <span asp-validation-for="Observaciones" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="FechaReg" class="control-label"></label>
                 <input asp-for="FechaReg" class="form-control" />
                 <span asp-validation-for="FechaReg" class="text-danger"></span>
@@ -65,7 +64,7 @@
                 <label asp-for="Borrado" class="control-label"></label>
                 <input asp-for="Borrado" class="form-control" />
                 <span asp-validation-for="Borrado" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -74,7 +73,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="FicViApoyosList" asp-route-idPlaneacion="@idPlaneacion" asp-route-IdAsignatura="@idAsignatura">Back to List</a>
 </div>
 
 @section Scripts {
