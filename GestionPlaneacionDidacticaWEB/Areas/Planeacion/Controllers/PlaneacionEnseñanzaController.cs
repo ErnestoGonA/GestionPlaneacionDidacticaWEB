@@ -6,6 +6,7 @@ using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
 using GestionPlaneacionDidacticaWEB.AlterMod;
 using Microsoft.AspNetCore.Mvc;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 {
@@ -22,12 +23,27 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
         //Lista -------------------------------------------
-        public IActionResult FicViPlaneacionEnseñanzaList()
+        public IActionResult FicViPlaneacionEnseñanzaList(short IdAsignatura, int IdPlaneacion, short IdTema, int IdCompetencia)
         {
             try
             {
-
-                FicListaEPE = FicService.FicGetListPlaneacionEnseñanza().Result;
+                ViewBag.AE = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Per = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                FicListaEPE = FicService.FicGetListPlaneacionEnseñanza(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia).Result;
+                ViewBag.Title = "Catalogo de alumnos";
+                return View(FicListaEPE);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        //Lista -------------------------------------------
+        public IActionResult FicViPlaneacionEnseñanzaList2()
+        {
+            try
+            {
+                FicListaEPE = FicService.FicGetListPlaneacionEnseñanza2().Result;
                 ViewBag.Title = "Catalogo de alumnos";
                 return View(FicListaEPE);
             }
@@ -90,6 +106,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             FicService.FicUpdatePlaneacionEnseñanza(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia, IdActividadEnseñanza,epe).Wait();
             return RedirectToAction("FicViPlaneacionEnseñanzaList");
+        }
+
+        //Create----------------------------------------- 
+        
+        public ActionResult FicViPlaneacionEnseñanzaCreate(string DesCompetencia, string DesTema, DateTime FechaProgramada, DateTime FechaRealizada, DateTime FechaReg, DateTime FechaUltMod, int IdActividadEnseñanza,string ReferenciaNorma,string UsuarioMod, string UsuarioReg, extended_eva_planeacion_enseñanza ed)
+        {
+            FicService = new FicSrvPlaneacionEnsenseñanza();
+            FicService.FicAlumnoCarreraCreate(DesCompetencia, DesTema, FechaProgramada, FechaRealizada, FechaReg, FechaUltMod, IdActividadEnseñanza, ReferenciaNorma,UsuarioMod,UsuarioReg,ed).Wait();
+            return RedirectToAction("FicViPlaneacionEnseñanzaList2");
         }
     }
 }

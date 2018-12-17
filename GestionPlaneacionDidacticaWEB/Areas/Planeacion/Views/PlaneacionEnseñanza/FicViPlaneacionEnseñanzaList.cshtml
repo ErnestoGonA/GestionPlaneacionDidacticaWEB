@@ -6,71 +6,84 @@
 
 <h2>FicViPlaneacionEnseñanzaList</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<div class="row">
-    <input type="text" id="myInput" placeholder="Search .." title="Type in a name">
-</div>
+<script type="text/javascript">
+    var idA = 1;
+</script>
 
+<br />
+<br />
+<hr />
+<div class="row">  
+    <b>
+        @Html.DisplayNameFor(model => model.IdPlaneacion):</b>
+    @foreach (var item in Model)
+    {@Html.DisplayFor(model => item.IdPlaneacion)}
+</div>
+<div class="row">
+    <b>@Html.DisplayNameFor(model => model.IdAsignatura):</b>
+    @foreach (var item in Model)
+    {@Html.DisplayFor(model => item.DesAsignatura)}
+</div>
+<div class="row">
+    <b>@Html.DisplayNameFor(model => model.IdTema):</b>
+    @foreach (var item in Model)
+    {@Html.DisplayFor(model => item.DesTema)}
+</div>
+<div class="row">
+    <b>@Html.DisplayNameFor(model => model.IdCompetencia):</b>
+    @foreach (var item in Model)
+    {@Html.DisplayFor(model => item.DesCompetencia)}
+</div>
+<hr />
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DesAsignatura)
+                Actividad Enseñanza
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReferenciaNorma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DesTema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DesCompetencia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DesActividadEnseñanza)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaReg)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.FechaProgramada)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaRealizada)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Borrado)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody id="myTable">
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DesAsignatura)
+                @Html.DropDownList("AE", null, null, htmlAttributes: new { @class = "form-control" })
+            </td>
+
+            <td>
+                <div class="form-group">
+                    <input asp-for="@item.FechaProgramada" class="form-control" />
+                    <span asp-validation-for="@item.FechaProgramada" class="text-danger"></span>
+                </div>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReferenciaNorma)
+                <div class="form-group">
+                    <input asp-for="@item.FechaRealizada" class="form-control" />
+                    <span asp-validation-for="@item.FechaRealizada" class="text-danger"></span>
+                </div>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DesTema)
+                @Html.DisplayFor(modelItem => item.Activo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DesCompetencia)
+                @Html.DisplayFor(modelItem => item.Borrado)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DesActividadEnseñanza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaReg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaProgramada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRealizada)
-            </td>
-            
+
             <td>
                 @Html.ActionLink("EditTest", "FicViPlaneacionEnseñanzaUpdate", new { @IdAsignatura = item.IdAsignatura, @IdPlaneacion = item.IdPlaneacion, @IdTema = item.IdTema, @IdCompetencia = item.IdCompetencia, @IdActividadEnseñanza = item.IdActividadEnseñanza })
                 @Html.ActionLink("DetailsTest", "FicViPlaneacionEnseñanzaDetail", new { @IdAsignatura = item.IdAsignatura, @IdPlaneacion = item.IdPlaneacion, @IdTema = item.IdTema, @IdCompetencia = item.IdCompetencia, @IdActividadEnseñanza = item.IdActividadEnseñanza }) |
@@ -99,8 +112,30 @@
                     </div>
                 </div>
 
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal1" data-target="#myModal1"
+                        data-whatever="@item.DesAsignatura">
+                    Create
+                </button>
+                @Html.ActionLink("Crear", "FicViPlaneacionEnseñanzaCreate", new {
+               @IdAsignatura = item.IdAsignatura,
+               @IdPlaneacion = item.IdPlaneacion,
+               @IdTema = item.IdTema,
+               @IdCompetencia = item.IdCompetencia,
+               @FechaProgramada=item.FechaProgramada,
+               @DesAsignatura=item.DesAsignatura,
+               @Borrado =item.Borrado,
+               @Activo = item.Activo,
+               @IdActividadEnseñanza = 1,
+               @ReferenciaNorma = item.ReferenciaNorma,
+               @UsuarioMod=item.UsuarioMod,
+               @UsuarioReg = item.UsuarioReg,
+               @DesCompetencia = item.DesCompetencia,
+               @DesTema=item.DesTema
+           })
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+
