@@ -46,7 +46,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         [HttpPost]
         public ActionResult FicViPlaneacionGuardarComo(eva_planeacion planeacion)
         {
-            FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            FicSrvPlaneacion.FicPlaneacionGuardarComo(planeacion,planeacion.IdPlaneacion).Wait();
             return RedirectToAction("FicViPlaneacionList");
         }
 
