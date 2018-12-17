@@ -8,13 +8,13 @@
 <br />
 <div class="form-group text-center col-sm-12">
     <label class="control-label  col-sm-12">Usuario</label>
-    @Html.DropDownList("Us", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Us", null, null, htmlAttributes: new { @class = "form-control" })
     <br>
     <label class="control-label  col-sm-12">Asignatura</label>
-    @Html.DropDownList("Asi", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Asi", null, null, htmlAttributes: new { @class = "form-control" })
     <br>
     <label class="control-label  col-sm-12">Periodo</label>
-    @Html.DropDownList("Per", null, htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("Per", null,null, htmlAttributes: new { @class = "form-control" })
 </div>
 
 <br />
@@ -23,7 +23,7 @@
     <h2 class="form-group text-center col-sm-12">Lista de Planeaciones</h2>
 
     <p class=" btn btn-warning text-left col-sm-2 "  >
-        <a  class="text-light" asp-action="FicViPlaneacionCreate">Create New</a>
+        <a  class="text-light" asp-action="FicViPlaneacionCreate" >Create New</a>
     </p>
     <table class="table">
         <thead>
@@ -81,8 +81,8 @@
                         @Html.ActionLink("Edit", "FicViPlaneacionEdit", new { IdPlaneacion = item.IdPlaneacion }) |
                         @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
                         @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion }) |
-                        @Html.ActionLink("Temas", "FicViTemasList", item) |
-                        @Html.ActionLink("Apoyos", "FicViApoyosList", item)
+                        @Html.ActionLink("Temas", "FicViTemasList", item) |@Html.ActionLink("Apoyos", "FicViApoyosList", item)|
+                        @Html.ActionLink("Guardar Como", "FicViGuardarComo",item)
                     </td>
                 </tr>
             }

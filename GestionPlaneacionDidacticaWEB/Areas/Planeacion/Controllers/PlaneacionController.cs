@@ -7,6 +7,7 @@ using GestionPlaneacionDidacticaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 {
@@ -20,12 +21,33 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         TemasController controller;
         FicSrvApoyos FicSrvApoyos;
         ApoyosController apoyoscontroller;
+        Int16 idAsignatura;
+        Int16 idPeriodo;
 
         public PlaneacionController()
         {
             FicSrvPlaneacion = new FicSrvPlaneacion();
             controller = new TemasController();
             apoyoscontroller = new ApoyosController();
+        }
+        public IActionResult FicViGuardarComo(int IdPlaneacion)
+        {
+            try
+            {
+                planeacion = FicSrvPlaneacion.FicGetPlaneacion(IdPlaneacion).Result;
+                ViewBag.Title = "Guardar como";
+                return View(planeacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        [HttpPost]
+        public ActionResult FicViPlaneacionGuardarComo(eva_planeacion planeacion)
+        {
+            FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            return RedirectToAction("FicViPlaneacionList");
         }
         public IActionResult FicViPlaneacionList()
         {
@@ -44,14 +66,21 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViPlaneacionCreate()
+        public IActionResult FicViPlaneacionCreate(FormCollection form)
         {
-            var planeacion = new eva_planeacion();
-            planeacion.IdPlaneacion = 1;
-            planeacion.IdAsignatura = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
-            planeacion.IdPeriodo = 1;//Convert.ToInt16(Request.Form["Asi"].ToString());
+            try
+            {
+                var planeacion = new eva_planeacion();
+                planeacion.IdPlaneacion = 1;
+                planeacion.IdAsignatura = Convert.ToInt16(form["Asi"].ToString());
+                planeacion.IdPeriodo = Convert.ToInt16(form["Per"].ToString());
 
-            return View(planeacion);
+
+                return View(planeacion);
+            }catch(Exception e)
+            {
+                return null;
+            }
         }
 
         [HttpPost]
