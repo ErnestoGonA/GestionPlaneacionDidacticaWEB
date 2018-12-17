@@ -62,7 +62,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicApoyo.FechaReg = DateTime.Now;
             FicApoyo.FechaUltMod = DateTime.Now;
             FicApoyo.UsuarioReg = "Reyes";
-            FicApoyo.UsuarioUltMod = "Reyes";
+            FicApoyo.UsuarioMod = "Reyes";
             FicApoyo.Activo = "S";
             FicApoyo.Borrado = "N";
             FicSrvApoyos.FicApoyoCreate(FicApoyo).Wait();
@@ -84,17 +84,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViApoyosEdit(short IdAsignatura, short IdPlaneacion, short IdApoyo)
+        public IActionResult FicViApoyosEdit(eva_planeacion_apoyos Apoyo)
         {
             try
             {
                 //ViewBag.IdAsignatura = IdAsignatura;
                 //ViewBag.IdPlaneacion = IdPlaneacion;
                 //eva_planeacion_apoyos apoyo = FicSrvApoyos.FicGetApoyo(IdAsignatura, IdPlaneacion, IdApoyo).Result;
-                Apoyo = FicSrvApoyos.FicGetApoyo(IdPlaneacion, IdAsignatura, IdApoyo).Result;
+                //Apoyo = FicSrvApoyos.FicGetApoyo(IdPlaneacion, IdAsignatura, IdApoyo).Result;
                 ViewBag.Title = "Actualizar Apoyo";
-                ViewBag.IdAsignatura = IdAsignatura;
-                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = Apoyo.IdAsignatura;
+                ViewBag.IdPlaneacion = Apoyo.IdPlaneacion;
                 return View(Apoyo);
             }
             catch (Exception e)
@@ -104,7 +104,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult FicViApoyosEdit(eva_planeacion_apoyos Apoyo)
+        public ActionResult FicViApoyosEditar(eva_planeacion_apoyos Apoyo)
         {
             FicSrvApoyos.FicApoyosUpdate(Apoyo).Wait();
             return RedirectToAction("FicViApoyosList", new { Apoyo.IdAsignatura, Apoyo.IdPlaneacion });
