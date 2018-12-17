@@ -7,6 +7,7 @@ using GestionPlaneacionDidacticaWEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 {
@@ -20,12 +21,33 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         TemasController controller;
         FicSrvApoyos FicSrvApoyos;
         ApoyosController apoyoscontroller;
+        Int16 idAsignatura;
+        Int16 idPeriodo;
 
         public PlaneacionController()
         {
             FicSrvPlaneacion = new FicSrvPlaneacion();
             controller = new TemasController();
             apoyoscontroller = new ApoyosController();
+        }
+        public IActionResult FicViGuardarComo(int IdPlaneacion)
+        {
+            try
+            {
+                planeacion = FicSrvPlaneacion.FicGetPlaneacion(IdPlaneacion).Result;
+                ViewBag.Title = "Guardar como";
+                return View(planeacion);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        [HttpPost]
+        public ActionResult FicViPlaneacionGuardarComo(eva_planeacion planeacion)
+        {
+            FicSrvPlaneacion.FicPlaneacionCreate(planeacion).Wait();
+            return RedirectToAction("FicViPlaneacionList");
         }
         public IActionResult FicViPlaneacionList()
         {
@@ -58,6 +80,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         [HttpPost]
         public ActionResult FicViPlaneacionCreate(eva_planeacion planeacion)
         {
+            planeacion.IdPeriodo = Int16.Parse(Request.Form["idPeriodo"].ToString());
+            planeacion.IdAsignatura = Int16.Parse(Request.Form["idAsignatura"].ToString());
             planeacion.FechaReg = DateTime.Now;
             planeacion.FechaUltMod = DateTime.Now;
             planeacion.UsuarioReg = "PEDRO";
@@ -145,5 +169,6 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 throw e;
             }
         }
+
     }
 }

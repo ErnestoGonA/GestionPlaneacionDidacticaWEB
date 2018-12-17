@@ -44,6 +44,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             }
             return null;
         }
+        public async Task<eva_planeacion> FicPlaneacionGuardarComo(eva_planeacion planeacion,int idPlaneacion)
+        {
+
+            var json = JsonConvert.SerializeObject(planeacion);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuestaPost = await client.PostAsync("api/Planeaciones/NewPlaneacion/", content);
+            FicSrvApoyos apoyosService = new FicSrvApoyos();
+            if (respuestaPost.IsSuccessStatusCode)
+            {
+                return planeacion;
+            }
+            return null;
+        }
         public async Task<eva_planeacion> FicGetPlaneacion(int IdPlaneacion)
         {
             HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeaciones/" + IdPlaneacion);
