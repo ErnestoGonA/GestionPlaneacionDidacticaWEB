@@ -77,7 +77,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
         public async Task<string> FicApoyosDelete(short IdApoyo, short IdAsignatura, short IdPlaneacion)
         {
 
-            var respuestaDelete = await client.DeleteAsync("api/DeleteFuente/" + IdApoyo + "/" + IdAsignatura + "/" + IdPlaneacion);
+            var respuestaDelete = await client.DeleteAsync("api/DeleteApoyo/" + IdApoyo + "/" + IdAsignatura + "/" + IdPlaneacion);
             if (respuestaDelete.IsSuccessStatusCode)
             {
                 return "OK";
