@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services;
-using GestionPlaneacionDidacticaWEB.Models;
+using GestionPlaneacionDidacticaWEB.AlterMod;
 using Microsoft.AspNetCore.Mvc;
 using GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers;
 
@@ -26,6 +26,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
+
                 FicListaEPE = FicService.FicGetListPlaneacionEnseñanza().Result;
                 ViewBag.Title = "Catalogo de alumnos";
                 return View(FicListaEPE);
