@@ -85,37 +85,10 @@
             </td>
 
             <td>
-                @Html.ActionLink("EditTest", "FicViPlaneacionEnseñanzaUpdate", new { @IdAsignatura = item.IdAsignatura, @IdPlaneacion = item.IdPlaneacion, @IdTema = item.IdTema, @IdCompetencia = item.IdCompetencia, @IdActividadEnseñanza = item.IdActividadEnseñanza })
-                @Html.ActionLink("DetailsTest", "FicViPlaneacionEnseñanzaDetail", new { @IdAsignatura = item.IdAsignatura, @IdPlaneacion = item.IdPlaneacion, @IdTema = item.IdTema, @IdCompetencia = item.IdCompetencia, @IdActividadEnseñanza = item.IdActividadEnseñanza }) |
+                <!--Html.ActionLink("EditTest", "FicViPlaneacionEnseñanzaUpdate", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdCompetencia = item.IdCompetencia, IdActividadEnseñanza = item.IdActividadEnseñanza })
+                Html.ActionLink("DetailsTest", "FicViPlaneacionEnseñanzaDetail", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdCompetencia = item.IdCompetencia, IdActividadEnseñanza = item.IdActividadEnseñanza }) -->
                 <!--Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
-                        data-whatever="@item.DesAsignatura">
-                    Delete
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h2 style="color:black;">¿Estas seguro de eliminar el registro?</h2>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                @Html.ActionLink("Delete", "FicViPlaneacionEnseñanzaDelete", new { @IdAsignatura = item.IdAsignatura, @IdPlaneacion = item.IdPlaneacion, @IdTema = item.IdTema, @IdCompetencia = item.IdCompetencia, @IdActividadEnseñanza = item.IdActividadEnseñanza })
-                                <!--<input type="submit" value="Delete" class="btn btn-danger" asp-action="FicViAlumnoCarreraDelete" asp-route-id="item.IdAlumno" />-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal1" data-target="#myModal1"
-                        data-whatever="@item.DesAsignatura">
-                    Create
-                </button>
+                
                 @Html.ActionLink("Crear", "FicViPlaneacionEnseñanzaCreate", new {
                @IdAsignatura = item.IdAsignatura,
                @IdPlaneacion = item.IdPlaneacion,
@@ -131,7 +104,8 @@
                @UsuarioReg = item.UsuarioReg,
                @DesCompetencia = item.DesCompetencia,
                @DesTema=item.DesTema
-           })
+           },
+           new { onclick = "return alert('Exito al crear');" })
             </td>
         </tr>
         }

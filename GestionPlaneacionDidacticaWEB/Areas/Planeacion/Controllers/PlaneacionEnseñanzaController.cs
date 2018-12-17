@@ -80,7 +80,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             if (IdAsignatura != 0)
             {
                 FicService.FicDeletePlaneacionEnseñanza(IdAsignatura,IdPlaneacion,IdTema,IdCompetencia,IdActividadEnseñanza).Wait();
-                return RedirectToAction("FicViAlumnoCarreraList");
+                return RedirectToAction("FicViPlaneacionEnseñanzaList2");
             }
             return null;
         }
