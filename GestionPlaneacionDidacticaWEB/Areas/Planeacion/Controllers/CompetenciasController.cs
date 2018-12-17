@@ -30,7 +30,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdTema = IdTema;
-                FicListaCompetencias = FicSrvCompetencias.FicGetListCompetencias(IdAsignatura,IdPlaneacion, IdTema).Result;
+                FicListaCompetencias = FicSrvCompetencias.FicGetListCompetencias(IdAsignatura, IdPlaneacion, IdTema).Result;
                 ViewBag.Title = "Catalogo de Competencias";
                 return View(FicListaCompetencias);
             }
@@ -86,7 +86,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViCompetenciasEdit(short IdAsignatura,int IdPlaneacion, short IdTema, short IdCompetencia)
+        public IActionResult FicViCompetenciasEdit(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.Competencias = new SelectList(new List<SelectListItem>(), "Value", "Text");
                 return View(Competencia);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -108,14 +108,24 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         public ActionResult FicViCompetenciasEdit(eva_planeacion_temas_competencias FicCompetencia)
         {
             try
-            {                 
+            {
                 FicSrvCompetencias.UpdateCompetencia(FicCompetencia).Wait();
                 return RedirectToAction("FicViCompetenciasList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        public ActionResult FicViCompetenciasDelete(eva_planeacion_temas_competencias competencia)
+        {
+            if (competencia != null)
+            {
+                FicSrvCompetencias.FicCompetenciasDelete(competencia).Wait();
+                return RedirectToAction("FicviCompetenciasList", new { competencia.IdPlaneacion, competencia.IdAsignatura , competencia.IdTema});
+            }
+            return null;
         }
     }
 }

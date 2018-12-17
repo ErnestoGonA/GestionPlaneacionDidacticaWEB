@@ -81,5 +81,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             }
             return null;
         }
+
+        public async Task<string> FicCompetenciasDelete(eva_planeacion_temas_competencias competencia)
+        {
+            var respuestaDelete = await client.DeleteAsync("api/asignatura/" + competencia.IdAsignatura + "/planeacion/" + competencia.IdPlaneacion + "/Temas/" + competencia.IdTema +"/competencias/"+competencia.IdCompetencia);
+            if (respuestaDelete.IsSuccessStatusCode)
+            {
+                return "OK";
+            }
+            return "ERROR";
+        }
     }
 }
