@@ -31,6 +31,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             }
             return new List<extended_eva_planeacion_enseñanza>();
         }
+        //List All 
+        public async Task<List<extended_eva_planeacion_enseñanza>> FicGetListPlaneacionEnseñanza2()
+        {
+            HttpResponseMessage FicResponse = await this.FiClient.GetAsync("http://localhost:53483/api/PlaneacionEnseñanzaExtended2");
+            if (FicResponse.IsSuccessStatusCode)
+            {
+                var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<extended_eva_planeacion_enseñanza>>(FicRespuesta);
+
+            }
+            return new List<extended_eva_planeacion_enseñanza>();
+        }
+
         //Detail
         public async Task<extended_eva_planeacion_enseñanza> FicGetDetailPlaneacionEnseñanza(short IdAsignatura, int IdPlaneacion, short IdTema, int IdCompetencia, int IdActividadEnseñanza)
         {
@@ -70,6 +83,29 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var respuestaPut = await FiClient.PutAsync("http://localhost:53483/api/UpdatePlaneacionEnseñanza/"+IdAsignatura + "/" + IdPlaneacion + "/" + IdTema + "/" + IdCompetencia + "/" + IdActividadEnseñanza, content);
             if (respuestaPut.IsSuccessStatusCode)
+            {
+                return epe;
+            }
+            return null;
+        }
+
+        //Create
+        public async Task<extended_eva_planeacion_enseñanza> FicAlumnoCarreraCreate(string DesCompetencia, string DesTema, DateTime FechaProgramada, DateTime FechaRealizada, DateTime FechaReg,DateTime FechaUltMod, int IdActividadEnseñanza, string ReferenciaNorma,string UsuarioMod,string UsuarioReg, extended_eva_planeacion_enseñanza epe)
+        {
+            FechaProgramada = DateTime.Now;
+            epe.FechaProgramada = FechaProgramada;
+            FechaRealizada = DateTime.Now;
+            epe.FechaRealizada = FechaRealizada;
+            FechaReg = DateTime.Now;
+            epe.FechaReg = FechaReg;
+            FechaUltMod = DateTime.Now;
+            epe.FechaUltMod = FechaUltMod;
+            epe.DesActividadEnseñanza = "Investigación documental";
+
+            var FicJson = JsonConvert.SerializeObject(epe);
+            var FiContent = new StringContent(FicJson, Encoding.UTF8, "application/json");
+            var FicRespuesta = await FiClient.PostAsync("http://localhost:53483/api/PlaneacionEnseñanza/NewPlaneacionEnseñanza", FiContent);
+            if (FicRespuesta.IsSuccessStatusCode)
             {
                 return epe;
             }
