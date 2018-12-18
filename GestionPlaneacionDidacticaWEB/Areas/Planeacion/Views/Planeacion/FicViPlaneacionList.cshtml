@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion>
 
 @{
-    ViewData["Title"] = "FicViPlaneacionList";
+    ViewData["Title"] = "FicViPlaneacionList";    
 }
 
 <script type="text/javascript">
@@ -89,7 +89,7 @@
                         @Html.ActionLink("Details", "FicViPlaneacionDetail", item) |
                         @Html.ActionLink("Delete", "FicViPlaneacionDelete", new { IdPlaneacion = item.IdPlaneacion }) |
                         @Html.ActionLink("Guardar Como", "FicViGuardarComo",item)
-                        @Html.ActionLink("Temas", "FicViTemasList", new { item.IdAsignatura, item.IdPlaneacion }) |
+                        @Html.ActionLink("Temas", "FicViTemasList", new { item.IdAsignatura, item.IdPlaneacion}) |
                         @Html.ActionLink("Apoyos", "FicViApoyosList", item)
                         @Html.ActionLink("Fuentes", "FicViFuentesList", item)
                     </td>

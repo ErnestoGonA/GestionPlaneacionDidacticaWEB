@@ -26,6 +26,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         {
             try
             {
+
+
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 FicListaTemas = FicSrvTemas.FicGetListTemas(IdAsignatura,IdPlaneacion).Result;

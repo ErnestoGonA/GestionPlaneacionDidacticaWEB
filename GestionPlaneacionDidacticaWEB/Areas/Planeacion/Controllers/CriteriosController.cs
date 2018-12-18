@@ -23,7 +23,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvCriterios = new FicSrvCriterios();
         }
 
-        public IActionResult FicViCriteriosList(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia)
+        public IActionResult FicViCriteriosList(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia, string DesTema, string Observaciones)
         {
             try
             {
@@ -31,6 +31,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdTema = IdTema;
                 ViewBag.IdCompetencia = IdCompetencia;
+                ViewBag.DesTema = DesTema;
+                ViewBag.Observaciones = Observaciones;
 
                 FicListaCriterios = FicSrvCriterios.GetListCriterios(IdAsignatura, IdPlaneacion,IdTema ,IdCompetencia).Result;
                 ViewBag.Title = "Catalogo de Criteiros";
@@ -44,9 +46,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 
         }
 
-        public IActionResult FicViCriteriosCreate(short asignatura, short planeacion, short tema, short competencia)
+        public IActionResult FicViCriteriosCreate(short asignatura, short planeacion, short tema, short competencia, string DesTema, string Observaciones)
         {
             Criterio = new eva_planeacion_criterios_evalua();
+            ViewBag.DesTema = DesTema;
+            ViewBag.Observaciones = Observaciones;
             Criterio.IdPlaneacion = planeacion;
             Criterio.IdAsignatura = asignatura;
             Criterio.IdTema = tema;
@@ -68,16 +72,19 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViCriteriosList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema, FicCompetencia.IdCompetencia });
         }
 
-        public IActionResult FicViCriteriosDetail(eva_planeacion_criterios_evalua item)
+        public IActionResult FicViCriteriosDetail(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia, short IdCriterio, string DesTema, string Observaciones)
         {
             try
             {
-                ViewBag.IdAsignatura = item.IdAsignatura;
-                ViewBag.IdPlaneacion = item.IdPlaneacion;
-                ViewBag.IdTema = item.IdTema;
-                ViewBag.IdCompetencia = item.IdCompetencia;
+                eva_planeacion_criterios_evalua tema = FicSrvCriterios.GetCriterio(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia, IdCriterio).Result;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdTema = IdTema;
+                ViewBag.IdCompetencia = IdCompetencia;
+                ViewBag.DesTema = DesTema;
+                ViewBag.Observaciones = Observaciones;
                 ViewBag.Title = "Detalle Tema";
-                return View(item);
+                return View(tema);
             }
             catch (Exception e)
             {
@@ -85,7 +92,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViCriteriosEdit(short IdAsignatura, int IdPlaneacion, short IdTema,short IdCompetencia, short IdCriterio)
+        public IActionResult FicViCriteriosEdit(short IdAsignatura, int IdPlaneacion, short IdTema,short IdCompetencia, short IdCriterio, string DesTema, string Observaciones)
         {
             try
             {
@@ -93,6 +100,8 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdTema = IdTema;
                 ViewBag.IdCompetencia = IdCompetencia;
+                ViewBag.DesTema = DesTema;
+                ViewBag.Observaciones = Observaciones;
                 eva_planeacion_criterios_evalua tema = FicSrvCriterios.GetCriterio(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia, IdCriterio).Result;
                 ViewBag.Title = "Actualizar criterio";
                 return View(tema);
