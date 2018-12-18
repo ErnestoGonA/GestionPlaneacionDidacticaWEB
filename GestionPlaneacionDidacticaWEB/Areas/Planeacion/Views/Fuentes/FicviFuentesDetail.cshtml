@@ -1,4 +1,4 @@
-﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_fuentes
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_des_fuente
 
 @{
     ViewData["Title"] = "FicviFuentesDetail";
@@ -19,16 +19,34 @@
             @Html.DisplayFor(model => model.IdAsignatura)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.NombreCorto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCorto)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdPlaneacion)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdPlaneacion)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ReferenciaNorma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenciaNorma)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdFuente)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdFuente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesFuenteCompleta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesFuenteCompleta)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Prioridad)

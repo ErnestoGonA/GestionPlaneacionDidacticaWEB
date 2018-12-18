@@ -22,16 +22,16 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_temas_competencias>> FicGetListCompetencias(short IdAsignatura, int IdPlaneacion,short IdTema)
+        public async Task<List<eva_planeacion_des_competencia>> FicGetListCompetencias(short IdAsignatura, int IdPlaneacion,short IdTema)
         {
         HttpResponseMessage FicResponse = await this.client.GetAsync("api/Asignatura/" + IdAsignatura + "/Planeacion/" + IdPlaneacion + "/Temas/"+IdTema+ "/Competencias");
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<eva_planeacion_temas_competencias>>(FicRespuesta);
+                return JsonConvert.DeserializeObject<List<eva_planeacion_des_competencia>>(FicRespuesta);
             }
             //return null;
-            return new List<eva_planeacion_temas_competencias>();
+            return new List<eva_planeacion_des_competencia>();
         }
 
         public async Task<eva_planeacion_temas_competencias> GetEvaPlaneacionTemasCompetencia(short idAsignatura, int idPlaneacion, short idTema, int idCompetencia)

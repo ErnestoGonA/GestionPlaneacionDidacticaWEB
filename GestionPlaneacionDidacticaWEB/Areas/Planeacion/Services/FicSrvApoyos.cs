@@ -21,17 +21,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Services
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<eva_planeacion_apoyos>> FicGetListApoyos(short IdPlaneacion, short IdAsignatura)
+        public async Task<List<eva_planeacion_des_apoyo>> FicGetListApoyos(short IdPlaneacion, short IdAsignatura)
         {
 
             HttpResponseMessage FicResponse = await this.client.GetAsync("api/Planeacion/" + IdPlaneacion + "/Apoyos/" + IdAsignatura);
             if (FicResponse.IsSuccessStatusCode)
             {
                 var FicRespuesta = await FicResponse.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<eva_planeacion_apoyos>>(FicRespuesta);
+                return JsonConvert.DeserializeObject<List<eva_planeacion_des_apoyo>>(FicRespuesta);
             }
             //return null;
-            return new List<eva_planeacion_apoyos>();
+            return new List<eva_planeacion_des_apoyo>();
         }
 
         public async Task<eva_planeacion_apoyos> FicGetApoyo(short IdPlaneacion, short IdAsignatura, short IdApoyo)

@@ -413,4 +413,57 @@ namespace GestionPlaneacionDidacticaWEB.Models
         public string UsuarioUltMod { get; set; }
         public string Borrado { get; set; }
     }
+    public class eva_planeacion_des_apoyo
+    {
+        [Key]
+        public Int16 IdAsignatura { get; set; }
+        public int IdPlaneacion { get; set; }
+        public Int16 IdApoyoDidactico { get; set; }
+        public string Observaciones { get; set; }
+        public DateTime FechaReg { get; set; }
+        public string UsuarioReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        public string UsuarioMod { get; set; }
+        public string Activo { get; set; }
+        public string Borrado { get; set; }
+        public string DesApoyoDidactico { get; set; }
+        public string NombreCorto { get; set; }
+        public string ReferenciaNorma { get; set; }
+    }
+    public class eva_planeacion_des_fuente
+    {
+        [Key]
+        [Required]
+        public Int16 IdAsignatura { get; set; }
+        public int IdPlaneacion { get; set; }
+        public Int16 IdFuente { get; set; }
+        public Int16 Prioridad { get; set; }
+        public string Observaciones { get; set; }
+        public string UsuarioReg { get; set; }
+        public DateTime FechaReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        public string UsuarioUltMod { get; set; }
+        public string Activo { get; set; }
+        public string Borrado { get; set; }
+        public string DesFuenteCompleta { get; set; }
+        public string NombreCorto { get; set; }
+        public string ReferenciaNorma { get; set; }
+    }
+    public class eva_planeacion_des_competencia
+    {
+        public Int16 IdAsignatura { get; set; }
+        public int IdPlaneacion { get; set; }
+        public Int16 IdTema { get; set; }
+        public int IdCompetencia { get; set; }
+        public string Observaciones { get; set; }
+        public DateTime FechaReg { get; set; }
+        public string UsuarioReg { get; set; }
+        public DateTime FechaUltMod { get; set; }
+        public string UsuarioUltMod { get; set; }
+        public string Activo { get; set; }
+        public string Borrado { get; set; }
+        public string DesCompetencia { get; set; }
+        public string NombreCorto { get; set; }
+        public string ReferenciaNorma { get; set; }
+    }
 }

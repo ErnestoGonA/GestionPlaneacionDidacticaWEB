@@ -1,4 +1,4 @@
-﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_temas_competencias
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_des_competencia
 
 @{
     ViewData["Title"] = "FicViCompetenciasDetail";
@@ -20,10 +20,22 @@
             @Html.DisplayFor(model => model.IdAsignatura)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.NombreCorto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCorto)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdPlaneacion)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdPlaneacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenciaNorma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenciaNorma)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IdTema)
@@ -36,6 +48,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdCompetencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesCompetencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesCompetencia)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Observaciones)

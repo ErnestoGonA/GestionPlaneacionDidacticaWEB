@@ -1,4 +1,4 @@
-﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_apoyos
+﻿@model GestionPlaneacionDidacticaWEB.Models.eva_planeacion_des_apoyo
 
 @{
     ViewData["Title"] = "FicViApoyosDetail";
@@ -19,16 +19,34 @@
             @Html.DisplayFor(model => model.IdAsignatura)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.NombreCorto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreCorto)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdPlaneacion)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdPlaneacion)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ReferenciaNorma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenciaNorma)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdApoyoDidactico)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IdApoyoDidactico)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesApoyoDidactico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesApoyoDidactico)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Observaciones)
