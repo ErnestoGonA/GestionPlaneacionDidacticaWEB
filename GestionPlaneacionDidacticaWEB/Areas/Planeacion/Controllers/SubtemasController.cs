@@ -15,6 +15,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
 
         List<eva_planeacion_subtemas> FicListaSubtemas;
         eva_planeacion_subtemas Subtemas;
+        string desTema;
 
         public SubtemasController()
         {
@@ -22,13 +23,15 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
 
-        public IActionResult FicViSubtemasList(short IdPlaneacion, short IdTema, short IdAsignatura)
+        public IActionResult FicViSubtemasList(short IdPlaneacion, short IdTema, short IdAsignatura,string DesTema)
         {
             try
             {
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdTema = IdTema;
+                ViewBag.DesTema = DesTema;
+                desTema = DesTema;
                 FicListaSubtemas = FicSrvSubtemas.FicGetListSubtemas(IdPlaneacion, IdTema,IdAsignatura).Result;
                 ViewBag.Title = "Catalogo de Subtemas";
                 return View(FicListaSubtemas);
@@ -39,7 +42,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
      
-        public IActionResult FicViSubtemasCreate(short IdPlaneacion, short IdTema, short IdAsignatura)
+        public IActionResult FicViSubtemasCreate(short IdPlaneacion, short IdTema, short IdAsignatura,string DesTema)
         {
             var subtema = new eva_planeacion_subtemas();
             subtema.IdPlaneacion = IdPlaneacion;
@@ -48,6 +51,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             ViewBag.IdPlaneacion = subtema.IdPlaneacion;
             ViewBag.IdAsignatura = subtema.IdAsignatura;
             ViewBag.IdTema = subtema.IdTema;
+            ViewBag.DesTema = DesTema;
             return View(subtema);
         }
 
@@ -64,15 +68,17 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViSubtemasList", new { Subtema.IdPlaneacion, Subtema.IdTema, Subtema.IdAsignatura });
         }
 
-        public IActionResult FicViSubtemasDetail(eva_planeacion_subtemas item)
+        public IActionResult FicViSubtemasDetail(short IdPlaneacion, short IdTema, short IdSubtema, short IdAsignatura, string DesTema)
         {
             try
             {
-                ViewBag.IdPlaneacion = item.IdPlaneacion;
-                ViewBag.IdAsignatura = item.IdAsignatura;
-                ViewBag.IdTema = item.IdTema;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdTema = IdTema;
+                Subtemas = FicSrvSubtemas.FicGetSubtema(IdPlaneacion, IdTema, IdAsignatura, IdSubtema).Result;
+                ViewBag.DesTema = DesTema;
                 ViewBag.Title = "Detalle Subtema";
-                return View(item);
+                return View(Subtemas);
             }
             catch (Exception e)
             {
@@ -80,13 +86,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViSubtemasEdit(short IdPlaneacion, short IdTema,short IdSubtema, short IdAsignatura)
+        public IActionResult FicViSubtemasEdit(short IdPlaneacion, short IdTema,short IdSubtema, short IdAsignatura,string DesTema)
         {
             try
             {
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdTema = IdTema;
+                ViewBag.DesTema = DesTema;
                 Subtemas = FicSrvSubtemas.FicGetSubtema(IdPlaneacion, IdTema,IdAsignatura,IdSubtema).Result;
                 ViewBag.Title = "Actualizar Subtema";
                 return View(Subtemas);

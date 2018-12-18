@@ -5,12 +5,15 @@
     var idAsignatura = ViewBag.IdPlaneacion;
     var idPlaneacion = ViewBag.IdPlaneacion;
     var idTema = ViewBag.IdTema;
+    var desTema = ViewBag.DesTema;
 }
+
+<h3>Tema: @desTema</h3>
 
 <h2>FicViCompetenciasList</h2>
 
 <p>
-    <a asp-action="FicViCompetenciasCreate" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion asp-route-tema=@idTema>Create New</a>
+    <a asp-action="FicViCompetenciasCreate" asp-route-asignatura=@idAsignatura asp-route-planeacion=@idPlaneacion asp-route-tema=@idTema asp-route-DesTema=@desTema>Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -88,12 +91,12 @@
                 @Html.DisplayFor(modelItem => item.Borrado)
             </td>*@
             <td>
-                @Html.ActionLink("Edit", "FicViCompetenciasEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia }) |
-                @Html.ActionLink("Details", "FicViCompetenciasDetail", item) |
+                @Html.ActionLink("Edit", "FicViCompetenciasEdit", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia, desTema }) |
+                @Html.ActionLink("Details", "FicViCompetenciasDetail", new { item.IdAsignatura, item.IdPlaneacion, item.IdTema, item.IdCompetencia, desTema }) |
                 @Html.ActionLink("Delete", "FicViCompetenciasDelete", item, new { onclick = "return confirm('Seguro?');" })
                 @*@Html.ActionLink("Aprendizaje", "FicViAprendizajesList")*@
                 @Html.ActionLink("Enseñanza", "FicViEnseñanzasList")
-                @Html.ActionLink("Criterios", "FicViCriteriosList", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema ,IdCompetencia= item.IdCompetencia}) 
+                @Html.ActionLink("Criterios", "FicViCriteriosList", new { IdAsignatura = item.IdAsignatura, IdPlaneacion = item.IdPlaneacion, IdTema = item.IdTema, IdCompetencia = item.IdCompetencia })
             </td>
         </tr>
 }

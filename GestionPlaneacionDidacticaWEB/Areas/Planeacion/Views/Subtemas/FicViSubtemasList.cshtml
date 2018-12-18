@@ -5,15 +5,17 @@
     var idAsignatura = ViewBag.IdPlaneacion;
     var idPlaneacion = ViewBag.IdPlaneacion;
     var idTema = ViewBag.IdTema;
+    var desTema = ViewBag.DesTema;
 }
 
 <h3>Maestro: Bryan Gutiérrez</h3>
 <h3>Materia: Desarrollo de aplicaciones empresariales</h3>
+<h3>Tema: @desTema</h3>
 
 <h2>Lista subtemas </h2>
 
 <p>
-    <a asp-action="FicViSubtemasCreate" asp-route-IdPlaneacion="@idPlaneacion" asp-route-IdTema="@idTema" asp-route-IdAsignatura="@idAsignatura">Create New</a>
+    <a asp-action="FicViSubtemasCreate" asp-route-IdPlaneacion="@idPlaneacion" asp-route-IdTema="@idTema" asp-route-IdAsignatura="@idAsignatura" asp-route-DesTema=@desTema>Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -38,8 +40,8 @@
                     @Html.DisplayFor(modelItem => item.DesSubtema)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "FicViSubtemasEdit", new { IdPlaneacion = (short)item.IdPlaneacion, IdTema = item.IdTema,IdSubtema = item.IdSubtema,IdAsignatura = item.IdAsignatura }) |
-                    @Html.ActionLink("Details", "FicViSubtemasDetail", item) |
+                    @Html.ActionLink("Edit", "FicViSubtemasEdit", new { IdPlaneacion = (short)item.IdPlaneacion, IdTema = item.IdTema, IdSubtema = item.IdSubtema, IdAsignatura = item.IdAsignatura, DesTema = desTema }) |
+                    @Html.ActionLink("Details", "FicViSubtemasDetail", new { IdPlaneacion = (short)item.IdPlaneacion, IdTema = item.IdTema, IdSubtema = item.IdSubtema, IdAsignatura = item.IdAsignatura, DesTema = desTema }) |
                     @Html.ActionLink("Delete", "FicViSubtemasDelete", item, new { onclick = "return confirm('¿Seguro?');" })
                 </td>
             </tr>

@@ -23,13 +23,14 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             FicSrvCompetencias = new FicSrvCompetencias();
         }
 
-        public IActionResult FicViCompetenciasList(short IdAsignatura, int IdPlaneacion, short IdTema)
+        public IActionResult FicViCompetenciasList(short IdAsignatura, int IdPlaneacion, short IdTema, string DesTema)
         {
             try
             {
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdTema = IdTema;
+                ViewBag.DesTema = DesTema;
                 FicListaCompetencias = FicSrvCompetencias.FicGetListCompetencias(IdAsignatura, IdPlaneacion, IdTema).Result;
                 ViewBag.Title = "Catalogo de Competencias";
                 return View(FicListaCompetencias);
@@ -40,12 +41,13 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             }
         }
 
-        public IActionResult FicViCompetenciasCreate(short asignatura, short planeacion, short tema)
+        public IActionResult FicViCompetenciasCreate(short asignatura, short planeacion, short tema, string DesTema)
         {
             var Competencia = new eva_planeacion_temas_competencias();
             ViewBag.IdPlaneacion = planeacion;
             ViewBag.IdAsignatura = asignatura;
             ViewBag.IdTema = tema;
+            ViewBag.DesTema = DesTema;
             ViewBag.Competencias = new SelectList(new List<SelectListItem>(), "Value", "Text");
             Competencia.IdPlaneacion = planeacion;
             Competencia.IdAsignatura = asignatura;
@@ -73,23 +75,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViCompetenciasList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema });
         }
 
-        public IActionResult FicViCompetenciasDetail(eva_planeacion_temas_competencias item)
-        {
-            try
-            {
-                ViewBag.IdPlaneacion = item.IdPlaneacion;
-                ViewBag.IdAsignatura = item.IdAsignatura;
-                ViewBag.IdTema = item.IdTema;
-                ViewBag.Title = "Detalle Fuente";
-                return View(item);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public IActionResult FicViCompetenciasEdit(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia)
+        public IActionResult FicViCompetenciasDetail(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia, string DesTema)
         {
             try
             {
@@ -97,6 +83,25 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
                 ViewBag.IdPlaneacion = IdPlaneacion;
                 ViewBag.IdAsignatura = IdAsignatura;
                 ViewBag.IdTema = IdTema;
+                ViewBag.DesTema = DesTema;
+                ViewBag.Title = "Detalle Fuente";
+                return View(Competencia);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IActionResult FicViCompetenciasEdit(short IdAsignatura, int IdPlaneacion, short IdTema, short IdCompetencia, string DesTema)
+        {
+            try
+            {
+                var Competencia = FicSrvCompetencias.GetEvaPlaneacionTemasCompetencia(IdAsignatura, IdPlaneacion, IdTema, IdCompetencia).Result;
+                ViewBag.IdPlaneacion = IdPlaneacion;
+                ViewBag.IdAsignatura = IdAsignatura;
+                ViewBag.IdTema = IdTema;
+                ViewBag.DesTema = DesTema;
                 ViewBag.IdCompetencia = IdCompetencia;
                 ViewBag.Competencias = new SelectList(new List<SelectListItem>(), "Value", "Text");
                 return View(Competencia);

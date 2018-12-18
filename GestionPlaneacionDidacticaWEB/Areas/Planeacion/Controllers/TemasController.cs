@@ -110,11 +110,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return null;
         }
 
-        public IActionResult FicViSubtemasList(int IdPlaneacion, short IdTema, short IdAsignatura)
+        public IActionResult FicViSubtemasList(int IdPlaneacion, short IdTema, short IdAsignatura, string DesTema)
         {
             try
             {
-                return RedirectToAction("FicViSubtemasList", "Subtemas", new { IdPlaneacion,IdTema,IdAsignatura });
+                return RedirectToAction("FicViSubtemasList", "Subtemas", new { IdPlaneacion,IdTema,IdAsignatura ,DesTema});
             }
             catch (Exception e)
             {
@@ -123,11 +123,11 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
         }
 
         
-        public IActionResult FicViCompetenciasList(int IdPlaneacion, short IdTema, short IdAsignatura)
+        public IActionResult FicViCompetenciasList(int IdPlaneacion, short IdTema, short IdAsignatura, string DesTema)
         {
             try
             {
-                return RedirectToAction("FicViCompetenciasList", "Competencias", new {IdAsignatura,IdPlaneacion, IdTema });
+                return RedirectToAction("FicViCompetenciasList", "Competencias", new {IdAsignatura,IdPlaneacion, IdTema, DesTema });
             }
             catch (Exception e)
             {
