@@ -15,7 +15,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
     {
         FicSrvCompetencias FicSrvCompetencias;
 
-        List<eva_planeacion_temas_competencias> FicListaCompetencias;
+        List<eva_planeacion_des_competencia> FicListaCompetencias;
         eva_planeacion_temas_competencias Competencia;
 
         public CompetenciasController()
@@ -73,7 +73,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViCompetenciasList", new { FicCompetencia.IdPlaneacion, FicCompetencia.IdAsignatura, FicCompetencia.IdTema });
         }
 
-        public IActionResult FicViCompetenciasDetail(eva_planeacion_temas_competencias item)
+        public IActionResult FicViCompetenciasDetail(eva_planeacion_des_competencia item)
         {
             try
             {

@@ -15,7 +15,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
     {
         FicSrvApoyos FicSrvApoyos;
 
-        List<eva_planeacion_apoyos> FicListaApoyos;
+        List<eva_planeacion_des_apoyo> FicListaApoyos;
         eva_planeacion_apoyos Apoyo;
 
         public ApoyosController()
@@ -69,7 +69,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViApoyosList", new { FicApoyo.IdPlaneacion, FicApoyo.IdAsignatura });
         }
 
-        public IActionResult FicViApoyosDetail(eva_planeacion_apoyos item)
+        public IActionResult FicViApoyosDetail(eva_planeacion_des_apoyo item)
         {
             try
             {

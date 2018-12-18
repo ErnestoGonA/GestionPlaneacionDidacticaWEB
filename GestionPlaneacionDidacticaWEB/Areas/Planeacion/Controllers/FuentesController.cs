@@ -15,7 +15,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
     {
         FicSrvFuentes FicSrvFuentes;
 
-        List<eva_planeacion_fuentes> FicListaFuentes;
+        List<eva_planeacion_des_fuente> FicListaFuentes;
         eva_planeacion_fuentes Fuente;
 
         public FuentesController()
@@ -72,7 +72,7 @@ namespace GestionPlaneacionDidacticaWEB.Areas.Planeacion.Controllers
             return RedirectToAction("FicViFuentesList", new { FicFuente.IdPlaneacion, FicFuente.IdAsignatura }); 
         }
 
-        public IActionResult FicViFuentesDetail(eva_planeacion_fuentes item)
+        public IActionResult FicViFuentesDetail(eva_planeacion_des_fuente item)
         {
             try
             {

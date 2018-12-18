@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_fuentes>
+﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_des_fuente>
 
 @{
     ViewData["Title"] = "FicViFuentesList";
@@ -19,11 +19,13 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.DesFuenteCompleta)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Prioridad)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
             </th>
             <th></th>
         </tr>
@@ -31,19 +33,22 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prioridad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Observaciones)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "FicViFuentesEdit", new { idPlaneacion = (short)item.IdPlaneacion, idAsignatura = item.IdAsignatura, idFuente = item.IdFuente }) |
-                    @Html.ActionLink("Details", "FicViFuentesDetail", item) |
-                    @Html.ActionLink("Delete", "FicViFuentesDelete", item, new { onclick = "return confirm('¿Seguro?');" })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesFuenteCompleta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prioridad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "FicViFuentesEdit", new { idPlaneacion = (short)item.IdPlaneacion, idAsignatura = item.IdAsignatura, idFuente = item.IdFuente }) |
+                @Html.ActionLink("Details", "FicViFuentesDetail", item) |
+                @Html.ActionLink("Delete", "FicViFuentesDelete", item, new { onclick = "return confirm('¿Seguro?');" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

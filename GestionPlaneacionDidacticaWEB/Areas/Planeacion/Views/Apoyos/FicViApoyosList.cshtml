@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_apoyos>
+﻿@model IEnumerable<GestionPlaneacionDidacticaWEB.Models.eva_planeacion_des_apoyo>
 
 @{
     ViewData["Title"] = "FicViApoyosList";
@@ -19,7 +19,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdApoyoDidactico)
+                @Html.DisplayNameFor(model => model.DesApoyoDidactico)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Observaciones)
@@ -32,7 +32,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdApoyoDidactico)
+                    @Html.DisplayFor(modelItem => item.DesApoyoDidactico)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Observaciones)
